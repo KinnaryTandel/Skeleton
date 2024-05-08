@@ -15,5 +15,6 @@ namespace ClassLibrary
         public string Email { get; set; }
         public int PaymentDetails { get; set; }
         public int BookingID { get; set; }
+        public string BookingId { get; set; }
     }
 }
