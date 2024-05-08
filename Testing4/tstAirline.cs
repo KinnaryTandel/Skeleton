@@ -24,9 +24,9 @@ namespace Testing4
             //create some test data to assign to the property 
             Boolean TestData = true;
             //assign the data to the property
-            AnAirline.Active = TestData;
+            AnAirline.WiFi = TestData;
             //test to see that the two values are the same 
-            Assert.AreEqual(AnAirline.Active, TestData);
+            Assert.AreEqual(AnAirline.WiFi, TestData);
         }
 
         [TestMethod]
@@ -74,7 +74,7 @@ namespace Testing4
             //create an instance of the class we want to create
             clsAirline AnAirline = new clsAirline();
             //create some test data to assign to the property
-            string TestData = "LE1 4AB";
+            string TestData = "Blissfulltravels@gmail.com";
             //assign the data to the property
             AnAirline.AirlineEmail = TestData;
             //test to see that the two values are the same
@@ -92,17 +92,8 @@ namespace Testing4
             AnAirline.AirlinePhoneNumber = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnAirline.AirlinePhoneNumber, TestData);
-        }
-
-
-
-
-
-
-
-
 
     }
 
-}
+  }
 }
