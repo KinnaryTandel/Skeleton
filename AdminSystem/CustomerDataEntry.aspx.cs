@@ -18,7 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer aCustomer = new clsCustomer();
         //capture the customer id
-        aCustomer.CustomerID = Convert.ToInt32(txtCustomerId.Text);
+        aCustomer.CustomerId = Convert.ToInt32(txtCustomerId.Text);
         //capture the name
         aCustomer.Name = txtName.Text;
         //capture the email

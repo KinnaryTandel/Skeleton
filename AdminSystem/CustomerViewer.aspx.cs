@@ -15,7 +15,7 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         aCustomer = (clsCustomer)Session["aCustomer"];
         //display the customer id
-        Response.Write(aCustomer.CustomerID);
+        Response.Write(aCustomer.CustomerId);
         //display the name for this entry
         Response.Write(aCustomer.Name);
         //display the email for this entry
