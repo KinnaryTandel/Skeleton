@@ -111,7 +111,7 @@ namespace Testing3
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffId = 3;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //test to see if the result is true
@@ -129,11 +129,11 @@ namespace Testing3
             Boolean OK = true;
 
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
-            //check the Staff id
-            if (aStaff.StaffId != 4)
+            //check the Staff id property
+            if (aStaff.StaffId != 6)
             {
                 OK = false;
             }
@@ -150,11 +150,11 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the fullname property
-            if (aStaff.Fullname != "Kinnary Tandel")
+            if (aStaff.Fullname != "Sam Smith")
             {
                 OK = false;
             }
@@ -172,11 +172,11 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the Email property
-            if (aStaff.Email != "abc@email.com")
+            if (aStaff.Email != "sam@email.com")
             {
                 OK = false;
             }
@@ -194,11 +194,11 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the Pasowrd property
-            if (aStaff.Password != "123")
+            if (aStaff.Password != "sam")
             {
                 OK = false;
             }
@@ -216,11 +216,11 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the Phone Number property
-            if (aStaff.PhoneNumber != "0123456789")
+            if (aStaff.PhoneNumber != "5678912340")
             {
                 OK = false;
             }
@@ -238,11 +238,11 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the Start date property
-            if (aStaff.StartDate != Convert.ToDateTime("09/05/2024"))
+            if (aStaff.StartDate != Convert.ToDateTime("11/05/2024"))
             {
                 OK = false;
             }
@@ -261,7 +261,7 @@ namespace Testing3
             //create a Boolean varible to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffId = 4;
+            Int32 StaffId = 6;
             //invoke the method
             Found = aStaff.Find(StaffId);
             //check the fullname property

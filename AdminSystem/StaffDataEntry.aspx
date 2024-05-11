@@ -6,9 +6,9 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 191px">
+<body style="height: 411px">
     <form id="form1" runat="server">
-        <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute" Text="Staff ID" width="71px"></asp:Label>
+        <asp:Label ID="lblStaffId" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 19px;" Text="Staff ID" width="71px"></asp:Label>
         <asp:TextBox ID="txtStaffId" runat="server" style="z-index: 1; left: 89px; top: 14px; position: absolute"></asp:TextBox>
         <asp:Label ID="lblFullname" runat="server" style="z-index: 1; left: 11px; top: 47px; position: absolute; width: 71px" Text="Full Name"></asp:Label>
         <asp:TextBox ID="txtFullname" runat="server" style="z-index: 1; left: 89px; top: 46px; position: absolute"></asp:TextBox>
@@ -26,6 +26,25 @@
         <p>
             <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 312px; position: absolute; left: 89px" Text="Cancel" width="60" />
         </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            <asp:Button ID="btnFind" runat="server" Height="27px" OnClick="Button1_Click" Text="Find" Width="106px" />
+        </p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>
