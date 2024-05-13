@@ -109,19 +109,41 @@ namespace ClassLibrary
         }
 
     }
-
+        /****** FIND METHOD ******/
         public bool Find(int CustomerId)
         {
-            //set the private data members to the test data value
-            mBookingId = 3;
-            mDateAdded = Convert.ToDateTime("23/12/2022");
-            mPaymentDetails = 123;
-            mCustomerId = 3;
-            mName = "abc";
-            mEmail = "abc";
-            mActive = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the customer id to search for
+            DB.AddParameter("@CustomerId", CustomerId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["Email"]);
+                mPaymentDetails = Convert.ToInt32(DB.DataTable.Rows[0]["PaymentDetails"]);
+                mBookingId = Convert.ToInt32(DB.DataTable.Rows[0]["BookingId"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
+
+            
+            
+            
+           
+           
         }
     }
    

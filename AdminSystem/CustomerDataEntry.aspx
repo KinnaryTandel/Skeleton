@@ -27,11 +27,12 @@
         <asp:Label ID="lblBookingId" runat="server" style="z-index: 1; left: 11px; top: 200px; position: absolute; height: 36px; width: 128px;" Text="Booking Id"></asp:Label>
         <asp:TextBox ID="txtBookingId" runat="server" style="z-index: 1; left: 163px; top: 198px; position: absolute" width="168px"></asp:TextBox>
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 452px; top: 22px; position: absolute" Text="Find" />
+        </p>
         <p aria-autocomplete="none">
             &nbsp;</p>
-        <asp:Label ID="lblBookingDate" runat="server" style="z-index: 1; left: 12px; top: 248px; position: absolute; height: 44px; width: 128px" Text="Booking Date"></asp:Label>
-        <asp:TextBox ID="txtBookingDate" runat="server" style="z-index: 1; left: 163px; top: 244px; position: absolute" width="168px"></asp:TextBox>
+        <asp:Label ID="lblBookingDate" runat="server" style="z-index: 1; left: 12px; top: 248px; position: absolute; height: 44px; width: 128px" Text="Date Added"></asp:Label>
+        <asp:TextBox ID="txtDateAdded" runat="server" style="z-index: 1; left: 163px; top: 244px; position: absolute" width="168px"></asp:TextBox>
         <p>
             <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 165px; top: 306px; position: absolute" Text="Active" />
         </p>
