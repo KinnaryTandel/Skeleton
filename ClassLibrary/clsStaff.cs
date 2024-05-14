@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ClassLibrary
 {
@@ -123,6 +124,95 @@ namespace ClassLibrary
                 //return false indicating there is a problem
                 return false;
             }
+        }
+
+        public string Valid(string fullname, string email, string password, string startDate, string phoneNumber)
+        {
+            //create a string variable to store the error
+            String Error = "";
+
+            /******* FULL NAME ******/
+            if (fullname.Length == 0) {
+                //record the error
+                Error = Error + "The Full name may not be blank : ";
+            }
+            //if the fullname is greater than 50 characters
+            if (fullname.Length > 50)
+            {
+                //record the error
+                Error = Error + "Full name must be less than 50 chracters : ";
+            }
+
+            /******* DATE ******/
+            //create a temporary variable to store the date values
+            DateTime DateTemp;
+            //create an instance of DateTime to compare with DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //copy the startDate value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(startDate);
+
+                //check to see if the date is less than today's date
+                if (DateTemp < DateComp)
+                {
+                    Error = Error + "The Date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The Date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The Date was not a valid date : ";
+            }
+
+            /******* EMAIL ******/
+            if (email.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Email may not be blank : ";
+            }
+            //if the street is too long
+            if (email.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Email must be less than 50 characters : ";
+            }
+
+            /******* PASSWORD ******/
+            if (password.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Password may not be blank : ";
+            }
+            //if the street is too long
+            if (password.Length > 50)
+            {
+                //record the error
+                Error = Error + "The Password must be less than 50 characters : ";
+            }
+
+            /******* PHONE NUMBER ******/
+            if (phoneNumber.Length == 0)
+            {
+                //record the error
+                Error = Error + "The Phone number may not be blank : ";
+            }
+            //if the street is too long
+            if (phoneNumber.Length > 10)
+            {
+                //record the error
+                Error = Error + "The Phone number must be less than 10 characters : ";
+            }
+            //return any error messages 
+            return Error;
         }
     }
 }
