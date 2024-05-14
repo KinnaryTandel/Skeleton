@@ -92,8 +92,159 @@ namespace Testing4
             AnAirline.AirlinePhoneNumber = TestData;
             //test to see that the two values are the same
             Assert.AreEqual(AnAirline.AirlinePhoneNumber, TestData);
+        }
+
+        [TestMethod]
+
+        public void FindMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create a boolean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+
+        }
+
+        [TestMethod]
+
+        public void TestAirlineIDFound()
+        {
+            //create an instance of the class we want to create 
+            clsAirline AnAirline = new clsAirline();
+            //create a boolean variable  to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method 
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline .Find(AirlineID);
+            // check the airline ID
+            if (AnAirline.AirlineID != 21)
+            {
+                OK = false;
+            }
+            //test to see if the result is correct
+            Assert.IsTrue(!OK);
+
+        }
+
+        [TestMethod]
+        public void TestDateAddedFound()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //check the date added property
+            if (AnAirline.DateAdded != Convert.ToDateTime("12/05/2024"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAirlineNameFound()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //check the airline name
+            if (AnAirline.AirlineName != "Blissful Travels")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAirlineEmailFound()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //check the airline email property
+            if (AnAirline.AirlineEmail != "Blissfultravels@gmail.com")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestAirlinePhoneNumberFound()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create a boolean variable to store the result of the search
+            Boolean Found = false;
+            //create a boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //check the county code property
+            if (AnAirline.AirlinePhoneNumber != 73061460)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestWiFiFound()
+        {
+            //create an instance of the class we want to create
+            clsAirline AnAirline = new clsAirline();
+            //create a Boolean variable to store the result of the search
+            Boolean Found = false;
+            //create Boolean variable to record if the data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 AirlineID = 1;
+            //invoke the method
+            Found = AnAirline.Find(AirlineID);
+            //check the active property
+            if (AnAirline.WiFi != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
 
     }
-
-  }
 }
