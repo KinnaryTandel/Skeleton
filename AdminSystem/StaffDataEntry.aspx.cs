@@ -8,34 +8,55 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-    protected void btnAdd_Click(object sender, EventArgs e)
+    protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsStaff
         clsStaff aStaff = new clsStaff();
         //capture the Full name
-        aStaff.Fullname = txtFullname.Text;
+        string Fullname = txtFullname.Text;
         //capture the StaffId
-        aStaff.StaffId = Convert.ToInt32(txtStaffId.Text);
+        string StaffId = txtStaffId.Text;
         //capture the Email
-        aStaff.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
         //capture the Password
-        aStaff.Password = txtPassword.Text;
+        string Password = txtPassword.Text;
         //capture the Phone number
-        aStaff.PhoneNumber = txtPhoneNumber.Text;
+        string PhoneNumber = txtPhoneNumber.Text;
         //capture the Date Added
-        aStaff.StartDate = Convert.ToDateTime(DateTime.Now);
+        string StartDate = txtStartDate.Text;
         //capture Active check box
-        aStaff.IsAdmin = chkIsAdmin.Checked;
+        string IsAdmin = chkIsAdmin.Text;
 
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = aStaff.Valid(Fullname, Email, Password, StartDate, PhoneNumber);
+        if (Error == "")
+        {
+            //capture the Fullname
+            aStaff.Fullname = Fullname;
+            //capture the Email
+            aStaff.Email = Email;
+            //capture the Password
+            aStaff.Password = Password;
+            //capture the Start Date
+            aStaff.StartDate = Convert.ToDateTime(StartDate);
+            //capture the Phone number
+            aStaff.PhoneNumber = PhoneNumber;
 
-
-        //store the Staff Detail in the session object
-        Session["AStaff"] = aStaff;
-        //navigate to the view page
-        Response.Redirect("StaffViewer.aspx");
+            //store the Staff Detail in the session object
+            Session["AStaff"] = aStaff;
+            //navigate to the view page
+            Response.Redirect("StaffViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnFind_Click(object sender, EventArgs e)
     {
         //create an instance of the Staff class
         clsStaff aStaff = new clsStaff();
@@ -54,7 +75,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtEmail.Text = aStaff.Email;
             txtPassword.Text = aStaff.Password;
             txtFullname.Text = aStaff.Fullname;
-            txtPhoneNumber.Text = aStaff.PhoneNumber;
+            txtPhoneNumber.Text = Convert.ToString(aStaff.PhoneNumber);
             txtStartDate.Text = aStaff.StartDate.ToString();
             chkIsAdmin.Checked = aStaff.IsAdmin;
         }
