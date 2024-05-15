@@ -110,7 +110,7 @@ public class clsDataConnection
             //return the full path of the db
             return DBNames[0];
         }
-        //if no database is founjd throw an exception
+        //if no database is found throw an exception
         else if (DBNames.Count == 0)
         {
             throw new System.Exception("There is no database in your App_Data folder");

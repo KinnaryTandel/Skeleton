@@ -43,7 +43,7 @@ namespace Testing4
         }
 
         [TestMethod]
-        public void AddressIdPropertyOK()
+        public void AddressIDPropertyOK()
         {
             //create an instance of the class we want to create
             clsAirline AnAirline = new clsAirline();
@@ -103,7 +103,7 @@ namespace Testing4
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
             //test to see if the result is true
@@ -122,16 +122,16 @@ namespace Testing4
             //create a boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method 
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
-            Found = AnAirline .Find(AirlineID);
-            // check the airline ID
-            if (AnAirline.AirlineID != 21)
+            Found = AnAirline.Find(AirlineID);
+            //check the airline ID
+            if (AnAirline.AirlineID != 2)
             {
                 OK = false;
             }
-            //test to see if the result is correct
-            Assert.IsTrue(!OK);
+            //test to see if the result is coreect
+            Assert.IsTrue(OK);
 
         }
 
@@ -145,11 +145,11 @@ namespace Testing4
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
-            //check the date added property
-            if (AnAirline.DateAdded != Convert.ToDateTime("12/05/2024"))
+            //check the date property
+            if (AnAirline.DateAdded != Convert.ToDateTime("14/05/2024"))
             {
                 OK = false;
             }
@@ -167,11 +167,11 @@ namespace Testing4
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
             //check the airline name
-            if (AnAirline.AirlineName != "Blissful Travels")
+            if (AnAirline.AirlineName != "Blissful_Travels")
             {
                 OK = false;
             }
@@ -189,11 +189,11 @@ namespace Testing4
             //create a boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
             //check the airline email property
-            if (AnAirline.AirlineEmail != "Blissfultravels@gmail.com")
+            if (AnAirline.AirlineEmail != "Bliss@gmail.com")
             {
                 OK = false;
             }
@@ -211,11 +211,11 @@ namespace Testing4
             //create a boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
-            //check the county code property
-            if (AnAirline.AirlinePhoneNumber != 73061460)
+            //check the airline phone number property
+            if (AnAirline.AirlinePhoneNumber != 73056015)
             {
                 OK = false;
             }
@@ -233,10 +233,10 @@ namespace Testing4
             //create Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 AirlineID = 1;
+            Int32 AirlineID = 2;
             //invoke the method
             Found = AnAirline.Find(AirlineID);
-            //check the active property
+            //check the WiFi property
             if (AnAirline.WiFi != true)
             {
                 OK = false;

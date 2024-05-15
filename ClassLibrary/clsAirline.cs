@@ -113,23 +113,30 @@ namespace ClassLibrary
 
         public bool Find(int AirlineID)
         {
-            
-            
-
-            if (AirlineID == 1) 
+            //create an instance from the database to the private data members
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the airline id to search for 
+            DB.AddParameter("@AirlineID", AirlineID);
+            //execure the stored procedure
+            DB.Execute("sproc_tblAirline_FilterbyAirlineID");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
             {
-                
-                mAirlineID = 1;
-                mDateAdded = Convert.ToDateTime("2024-05-12"); 
-                mAirlineName = "Blissful Travels";
-                mAirlineEmail = "Blissfultravels@gmail.com";
-                mAirlinePhoneNumber = 73061460;
-                mWiFi = true;
 
+                mAirlineID = Convert.ToInt32(DB.DataTable.Rows[0]["AirlineID"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["RegistrationDate"]); 
+                mAirlineName = Convert.ToString(DB.DataTable.Rows[0]["AirlineName"]);
+                mAirlineEmail = Convert.ToString(DB.DataTable.Rows[0]["AirlineEmail"]);
+                mAirlinePhoneNumber = Convert.ToInt32(DB.DataTable.Rows[0]["AirlinePhoneNumber"]);
+                mWiFi = Convert.ToBoolean(DB.DataTable.Rows[0]["HasWi-Fi"]);
+
+                //return that everything worked OK
                 return true; 
             }
+            //if no record was found
             else
             {
+                //return false indiacting there is a problem
                 return false; 
             }
         }
