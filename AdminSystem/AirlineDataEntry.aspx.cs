@@ -23,12 +23,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsAirline
         clsAirline AnAirline = new clsAirline();
         //capture the airline attributes
-        AnAirline.AirlineName = AirlineName.Text;
-        AnAirline.AirlineEmail = AirlineEmail.Text;
-        AnAirline.AirlinePhoneNumber = Convert.ToInt32(AirlinePhoneNumber.Text);
+        AnAirline.AirlineName = txtAirlineName.Text;
+        AnAirline.AirlineEmail = txtAirlineEmail.Text;
+        AnAirline.AirlinePhoneNumber = Convert.ToInt32(txtAirlinePhoneNumber.Text);
         AnAirline.DateAdded = Convert.ToDateTime(DateTime.Now);
         AnAirline.WiFi = chkWiFi.Checked;
-        AnAirline.AirlineID = Convert.ToInt32(AirlineID.Text);
+        AnAirline.AirlineID = Convert.ToInt32(txtAirlineID.Text);
         //store the airline name in the session object
         Session["AnAirline"] = AnAirline;
         //navigate to the view page
@@ -50,5 +50,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void AirlineEmail_TextChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the airline class
+        clsAirline AnAirline = new clsAirline();
+        //create a variable to store the primary key
+        Int32 AirlineID;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        AirlineID = Convert.ToInt32(txtAirlineID.Text);
+        //find the record
+        Found = AnAirline.Find(AirlineID);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtAirlineID.Text = AnAirline.AirlineID.ToString();
+            txtAirlineName.Text = AnAirline.AirlineName;
+            txtAirlineEmail.Text = AnAirline.AirlineEmail;
+            txtAirlinePhoneNumber.Text = AnAirline.AirlinePhoneNumber.ToString();
+            txtAirlineResigistrationDate.Text = AnAirline.DateAdded.ToString();
+            chkWiFi.Checked = AnAirline.WiFi;  
+
+        }
     }
 }
