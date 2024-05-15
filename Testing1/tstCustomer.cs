@@ -541,7 +541,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string PaymentDetails = "aaaaa"; //this should fail
+            string PaymentDetails = "aaaaa"; //this should fail 5 digits
             //invoke the method
             Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingId, DateAdded);
             //test to see that the result is correct
@@ -583,7 +583,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string PaymentDetails = "aaaaaaaaa"; //this should be ok
+            string PaymentDetails = "aaaaaaaa"; //this should be ok 8 digits
             //invoke the method
             Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingId, DateAdded);
             //test to see that the result is correct
@@ -597,7 +597,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string PaymentDetails = "aaaaaaaaaa"; //this should be ok
+            string PaymentDetails = "aaaaaaaaa"; //this should be ok 9 digits
             //invoke the method
             Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingId, DateAdded);
             //test to see that the result is correct
@@ -611,7 +611,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string PaymentDetails = "aaaaaaaaaaa"; //this should fail
+            string PaymentDetails = "aaaaaaaaaa"; //this should fail 10 digits
             //invoke the method
             Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingId, DateAdded);
             //test to see that the result is correct
