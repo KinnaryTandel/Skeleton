@@ -36,10 +36,10 @@
         <p>
             <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 165px; top: 306px; position: absolute" Text="Active" />
         </p>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 338px; position: absolute" width="128px"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 338px; position: absolute"></asp:Label>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 119px; top: 397px; position: absolute" Text="Cancel" />
         <p>
-            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 14px; top: 397px; position: absolute; right: 615px;" Text="OK" width="77px" />
+            <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 20px; top: 398px; position: absolute; right: 664px;" Text="OK" width="77px" />
         </p>
     </form>
 </body>

@@ -215,7 +215,7 @@ namespace ClassLibrary
                 Error = Error + "The Payment Details field is incomplete : ";
             }
             //if the PaymentDetails lenght is greater than 10 characters
-            if (paymentDetails.Length > 10)
+            if (paymentDetails.Length > 9)
             {
                 //record the error
                 Error = Error + "The Payment Details must be less than 10 characters : ";

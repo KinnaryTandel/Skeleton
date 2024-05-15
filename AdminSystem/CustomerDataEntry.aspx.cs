@@ -18,23 +18,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsCustomer
         clsCustomer aCustomer = new clsCustomer();
         //capture the customer id
-        aCustomer.CustomerId = Convert.ToInt32(txtCustomerId.Text);
+        string CustomerId = txtCustomerId.Text;
         //capture the name
-        aCustomer.Name = txtName.Text;
+        string Name = txtName.Text;
         //capture the email
-        aCustomer.Email = txtEmail.Text;
+        string Email = txtEmail.Text;
         //capture the payment details
-        aCustomer.PaymentDetails = Convert.ToInt32(txtPaymentDetails.Text);
+        string PaymentDetails = txtPaymentDetails.Text;
         //capture the booking id
-        aCustomer.BookingID = Convert.ToInt32(txtBookingId.Text);
+        string BookingID = txtBookingId.Text;
         //capture the booking date
-        aCustomer.DateAdded = Convert.ToDateTime(DateTime.Now);
+        string DateAdded = txtDateAdded.Text;
         //capture active check box
-        aCustomer.Active = chkActive.Checked;
-        //store the customer in the session object
-        Session["aCustomer"] = aCustomer;
-        //navidate to the view page
-        Response.Redirect("CustomerViewer.aspx");
+        string Active = chkActive.Text;
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingID, DateAdded);
+        if (Error == "")
+        {
+            //capture the Name
+            aCustomer.Name = Name;
+            //capture the email
+            aCustomer.Email = Email;
+            //capture the payment details
+            aCustomer.PaymentDetails = Convert.ToInt32(PaymentDetails);
+            //capture the booking id
+            aCustomer.BookingID = Convert.ToInt32(BookingID);
+            //capture the date added
+            aCustomer.DateAdded = Convert.ToDateTime(DateAdded);
+            //store the customer in the session object
+            Session["aCustomer"] = aCustomer;
+            //navidate to the view page
+            Response.Redirect("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
