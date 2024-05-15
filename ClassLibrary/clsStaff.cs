@@ -193,10 +193,10 @@ namespace ClassLibrary
                 Error = Error + "The Password may not be blank : ";
             }
             //if the street is too long
-            if (password.Length > 50)
+            if (password.Length > 16)
             {
                 //record the error
-                Error = Error + "The Password must be less than 50 characters : ";
+                Error = Error + "The Password must be less than 16 characters : ";
             }
 
             /******* PHONE NUMBER ******/

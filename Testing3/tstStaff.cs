@@ -745,7 +745,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string password = "";
-            password = password.PadRight(49, 'a'); //this should be ok
+            password = password.PadRight(15, 'a'); //this should be ok
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, password, StartDate, PhoneNumber);
             //test to see that the result is correct
@@ -762,7 +762,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string password = "";
-            password = password.PadRight(50, 'a');//this should be ok
+            password = password.PadRight(16, 'a');//this should be ok
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, password, StartDate, PhoneNumber);
             //test to see that the result is correct
@@ -779,7 +779,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string password = "";
-            password = password.PadRight(25, 'a');//this should be ok
+            password = password.PadRight(8, 'a');//this should be ok
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, password, StartDate, PhoneNumber);
             //test to see that the result is correct
@@ -796,7 +796,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string password = "";
-            password = password.PadRight(51, 'a'); //this should fail
+            password = password.PadRight(17, 'a'); //this should fail
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, password, StartDate, PhoneNumber);
             //test to see that the result is correct
@@ -813,7 +813,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string password = "";
-            password = password.PadRight(500, 'a'); //this should fail
+            password = password.PadRight(30, 'a'); //this should fail
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, password, StartDate, PhoneNumber);
             //test to see that the result is correct
@@ -947,7 +947,7 @@ namespace Testing3
 
             //create some test data to pass to the method
             string phone = "";
-            phone = phone.PadRight(500, 'a'); //this should fail
+            phone = phone.PadRight(30, 'a'); //this should fail
             //invoke the method
             Error = aStaff.Valid(Fullname, Email, Password, StartDate, phone);
             //test to see that the result is correct

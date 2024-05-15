@@ -21,30 +21,10 @@
         <asp:TextBox ID="txtStartDate" runat="server" style="z-index: 1; left: 89px; top: 201px; position: absolute"></asp:TextBox>
         <asp:CheckBox ID="chkIsAdmin" runat="server" style="z-index: 1; left: 89px; top: 232px; position: absolute" Text="Is Admin" />
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 13px; top: 267px; position: absolute"></asp:Label>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnAdd_Click" style="z-index: 1; top: 312px; position: absolute" Text="OK" width="60px" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; top: 312px; position: absolute" Text="OK" width="60px" />
         <asp:TextBox ID="txtPhoneNumber" runat="server" style="z-index: 1; left: 89px; top: 164px; position: absolute"></asp:TextBox>
-        <p>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 312px; position: absolute; left: 89px" Text="Cancel" width="60" />
-        </p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            &nbsp;</p>
-        <p>
-            <asp:Button ID="btnFind" runat="server" Height="27px" OnClick="Button1_Click" Text="Find" Width="106px" />
-        </p>
-        <p>
-            &nbsp;</p>
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; top: 312px; position: absolute; left: 89px" Text="Cancel" width="60" />
+        <asp:Button ID="btnFind" runat="server" style="z-index: 1; top: 15px; position: absolute; left: 300px;" OnClick="btnFind_Click" Text="Find" Width="60px" />
     </form>
 </body>
 </html>
