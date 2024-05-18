@@ -1,4 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomerList.aspx.cs" Inherits="_1_List" %>
+﻿
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CustomerList.aspx.cs" Inherits="_1_List" %>
 
 <!DOCTYPE html>
 
@@ -7,9 +9,13 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
+        <form id="form1" runat="server">
+ 
+            <div>
+                <asp:ListBox ID="lstCustomerList" runat="server" Height="285px" Width="320px"></asp:ListBox>
+            </div>
+        </form>
+
 </body>
-</html>
+    </html>
+
