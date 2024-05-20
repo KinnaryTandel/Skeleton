@@ -43,11 +43,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aStaff.StartDate = Convert.ToDateTime(StartDate);
             //capture the Phone number
             aStaff.PhoneNumber = PhoneNumber;
+            //capture IsAdmin
+            aStaff.IsAdmin = chkIsAdmin.Checked;
 
-            //store the Staff Detail in the session object
-            Session["AStaff"] = aStaff;
-            //navigate to the view page
-            Response.Redirect("StaffViewer.aspx");
+            //create a new instance of the address collection 
+            clsStaffCollection StaffList = new clsStaffCollection();
+            //set the ThisStaff property
+            StaffList.ThisStaff = aStaff;
+            //add the new record
+            StaffList.Add();
+            //redirect back to the list page
+            Response.Redirect("StaffList.aspx");
         }
         else
         {
