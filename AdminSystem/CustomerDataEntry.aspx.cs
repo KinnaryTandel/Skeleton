@@ -47,10 +47,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aCustomer.BookingID = Convert.ToInt32(BookingID);
             //capture the date added
             aCustomer.DateAdded = Convert.ToDateTime(DateAdded);
-            //store the customer in the session object
-            Session["aCustomer"] = aCustomer;
-            //navidate to the view page
-            Response.Redirect("CustomerViewer.aspx");
+            //capture active
+            aCustomer.Active = chkActive.Checked;
+            //create a new instance of the customer collection
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            //set the ThisCustomer property
+            CustomerList.ThisCustomer = aCustomer;
+            //add the new record
+            CustomerList.Add();
+            //redirect back to the list page
+            Response.Redirect("Customerlist.aspx");
         }
         else
         {
@@ -83,5 +89,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtDateAdded.Text = aCustomer.DateAdded.ToString();
             chkActive.Checked = aCustomer.Active;
         }
+        
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["CustomerId"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("CustomerDataEntry.aspx");
     }
 }

@@ -60,7 +60,7 @@ namespace Testing1
             TestCustomer.BookingID = 2365648;
             TestCustomer.DateAdded = DateTime.Now;
             //assign the data to the property
-            AllCustomers.ThisCustomers = TestCustomer;
+            AllCustomers.ThisCustomer = TestCustomer;
         }
         [TestMethod]
         public void ListAndCountOK()
@@ -88,6 +88,34 @@ namespace Testing1
             //test to see that the two values are the same
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
-        
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create 
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create the item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Active = true;
+            TestItem.CustomerId = 11;
+            TestItem.Name = "MarinaFr";
+            TestItem.Email = "marinafr";
+            TestItem.PaymentDetails = 59755698;
+            TestItem.BookingID = 2365648;
+            TestItem.DateAdded = DateTime.Now;
+            //set ThisCustomer to the test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set the primary key of the test data
+            TestItem.CustomerId = PrimaryKey;
+            //find the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+
     }
 }
