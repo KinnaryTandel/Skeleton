@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Activities.Expressions;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -22,24 +24,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsAirline
         clsAirline AnAirline = new clsAirline();
-        //capture the airline attributes
-        AnAirline.AirlineName = txtAirlineName.Text;
-        AnAirline.AirlineEmail = txtAirlineEmail.Text;
-        AnAirline.AirlinePhoneNumber = Convert.ToInt32(txtAirlinePhoneNumber.Text);
-        AnAirline.DateAdded = Convert.ToDateTime(DateTime.Now);
-        AnAirline.WiFi = chkWiFi.Checked;
-        AnAirline.AirlineID = Convert.ToInt32(txtAirlineID.Text);
-        //store the airline name in the session object
-        Session["AnAirline"] = AnAirline;
-        //navigate to the view page
-        Response.Redirect("AirlineViewer.aspx");
 
-
+        string AirlineName = txtAirlineName.Text;
+        string AirlineEmail = txtAirlineEmail.Text;
+        string AirlinePhoneNumber = txtAirlinePhoneNumber.Text;
+        String DateAdded = txtAirlineResigistrationDate.Text;
+        String Error = "";
+        Error = AnAirline.Valid(AirlineName, AirlineEmail, AirlinePhoneNumber, DateAdded);
+        if (Error == "")
+        {
+            //capture the airline attributes
+            AnAirline.AirlineName = txtAirlineName.Text;
+            AnAirline.AirlineEmail = txtAirlineEmail.Text;
+            AnAirline.AirlinePhoneNumber = Convert.ToInt32(txtAirlinePhoneNumber.Text);
+            AnAirline.DateAdded = Convert.ToDateTime(DateTime.Now);
+            AnAirline.WiFi = chkWiFi.Checked;
+            AnAirline.AirlineID = Convert.ToInt32(txtAirlineID.Text);
+            //store the airline name in the session object
+            Session["AnAirline"] = AnAirline;
+            //navigate to the view page
+            Response.Redirect("AirlineViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
+
 
     protected void TextBox2_TextChanged(object sender, EventArgs e)
     {
-        
+
     }
 
     protected void TextBox1_TextChanged1(object sender, EventArgs e)
@@ -73,7 +89,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtAirlineEmail.Text = AnAirline.AirlineEmail;
             txtAirlinePhoneNumber.Text = AnAirline.AirlinePhoneNumber.ToString();
             txtAirlineResigistrationDate.Text = AnAirline.DateAdded.ToString();
-            chkWiFi.Checked = AnAirline.WiFi;  
+            chkWiFi.Checked = AnAirline.WiFi;
 
         }
     }
