@@ -160,5 +160,38 @@ namespace Testing3
             //test to see if ThisStaff matches the test data
             Assert.AreEqual(allStaff.ThisStaff, TestItem);
         }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsStaffCollection allStaff = new clsStaffCollection();
+            //create the item of test data
+            clsStaff TestItem = new clsStaff();
+            //variable to store the primary key
+            int PrimaryKey = 0;
+            //set its properties
+            TestItem.IsAdmin = true;
+            TestItem.StaffId = 1;
+            TestItem.Fullname = "Name Name";
+            TestItem.Password = "name";
+            TestItem.Email = "name@email.com";
+            TestItem.StartDate = DateTime.Now;
+            TestItem.PhoneNumber = "1111111111";
+            //set ThisStaff to the test data
+            allStaff.ThisStaff = TestItem;
+            //add the record
+            PrimaryKey = allStaff.Add();
+            //set the primary key of the test data
+            TestItem.StaffId = PrimaryKey;
+            //find the record
+            allStaff.ThisStaff.Find(PrimaryKey);
+            //delete the record
+            allStaff.Delete();
+            //now find the record
+            Boolean Found = allStaff.ThisStaff.Find(PrimaryKey);
+            //test to see that the record was not found
+            Assert.IsFalse(Found);
+        }
     }
 }
