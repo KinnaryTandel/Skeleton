@@ -92,15 +92,33 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
-            DB.AddParameter("Fullname", mThisStaff.Fullname);
-            DB.AddParameter("Email", mThisStaff.Email);
-            DB.AddParameter("Password", mThisStaff.Password);
-            DB.AddParameter("PhoneNumber", mThisStaff.PhoneNumber);
-            DB.AddParameter("StartDate", mThisStaff.StartDate);
-            DB.AddParameter("IsAdmin", mThisStaff.IsAdmin);
+            DB.AddParameter("@Fullname", mThisStaff.Fullname);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@Password", mThisStaff.Password);
+            DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
+            DB.AddParameter("@StartDate", mThisStaff.StartDate);
+            DB.AddParameter("@IsAdmin", mThisStaff.IsAdmin);
 
             //execute the query returning the Primary key value
             return DB.Execute("sproc_tblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisStaff
+            //connect tot the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@StaffId", mThisStaff.StaffId);
+            DB.AddParameter("@Fullname", mThisStaff.Fullname);
+            DB.AddParameter("@Email", mThisStaff.Email);
+            DB.AddParameter("@Password", mThisStaff.Password);
+            DB.AddParameter("@PhoneNumber", mThisStaff.PhoneNumber);
+            DB.AddParameter("@StartDate", mThisStaff.StartDate);
+            DB.AddParameter("@IsAdmin", mThisStaff.IsAdmin);
+
+            //execute the query returning the Primary key value
+            DB.Execute("sproc_tblStaff_Update");
         }
     }
 }
