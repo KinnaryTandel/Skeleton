@@ -31,4 +31,12 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstAirlineList.DataBind();
       }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 session object to indicate this 
+        Session["AirlineID"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("AirlineDataEntry.aspx");
     }
+}
