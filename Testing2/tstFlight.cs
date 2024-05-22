@@ -16,16 +16,29 @@ namespace TestingFlights
             Assert.IsNotNull(AnFlight);
         }
         [TestMethod]
-        public void AddressIdPropertyOK()
+        public void FlightIdPropertyOK()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create some test data to assign to the property
             Int32 TestData = 1;
             //assign the data to the property
-            AnFlight.AirlineID = TestData;
+            AnFlight.FlightID = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.AirlineID, TestData);
+            Assert.AreEqual(AnFlight.FlightID, TestData);
+        }
+        [TestMethod]
+        public void FlightSeatNoPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsFlight AnFlight = new clsFlight();
+            //create some test data to assign to the property
+
+            string TestData = "Error";
+
+            AnFlight.SeatNo = TestData;
+
+            Assert.AreEqual(AnFlight.SeatNo, TestData);
         }
         [TestMethod]
         public void FlightDeperturePropertyOK()
@@ -33,11 +46,11 @@ namespace TestingFlights
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create some test data to assign to the property
-            Int32 TestData = 1;
-            //assign the data to the property
-            AnFlight.Departure = TestData;
+            string TestData = "Error";
+            //create some test data to assign to the property
+            AnFlight.Deperture = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.Departure, TestData);
+            Assert.AreEqual(AnFlight.Deperture, TestData);
 
         }
         [TestMethod]
@@ -58,11 +71,11 @@ namespace TestingFlights
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create some test data to assign to the property
-            Int32 TestData = 1;
-            //assign the data to the property
-            AnFlight.Arrival = TestData;
+            string TestData = "Error";
+            //create some test data to assign to the property
+            AnFlight.Deperture = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.Arrival, TestData);
+            Assert.AreEqual(AnFlight.Deperture, TestData);
 
         }
         [TestMethod]
