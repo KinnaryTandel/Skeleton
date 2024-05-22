@@ -128,7 +128,7 @@ namespace ClassLibrary
                 mAirlineName = Convert.ToString(DB.DataTable.Rows[0]["AirlineName"]);
                 mAirlineEmail = Convert.ToString(DB.DataTable.Rows[0]["AirlineEmail"]);
                 mAirlinePhoneNumber = Convert.ToInt32(DB.DataTable.Rows[0]["AirlinePhoneNumber"]);
-                mWiFi = Convert.ToBoolean(DB.DataTable.Rows[0]["HasWi-Fi"]);
+                mWiFi = Convert.ToBoolean(DB.DataTable.Rows[0]["HasWiFi"]);
 
                 //return that everything worked OK
                 return true;

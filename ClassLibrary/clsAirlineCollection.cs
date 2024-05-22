@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Channels;
 
 namespace ClassLibrary
 {
@@ -7,6 +8,10 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsAirline> mAirlineList = new List<clsAirline>();
+        //private member for ThisAirline
+        clsAirline mThisAirline = new clsAirline();
+
+        
 
         //public property for the address list
         public List<clsAirline> AirlineList
@@ -36,7 +41,20 @@ namespace ClassLibrary
                 //we shall worry about this later
             }
         }
-        public clsAirline ThisAirline { get; set; }
+        public clsAirline ThisAirline
+        {
+            get
+            {
+                //return the private data
+                return mThisAirline;
+            }
+            set
+            {
+                //set the private data
+                mThisAirline = value;
+
+            }
+        }
 
 
         //constructor for the class
@@ -53,12 +71,12 @@ namespace ClassLibrary
             //get the count of records
             RecordCount = DB.Count;
             //while there are records to process
-            while (Index < RecordCount) 
-            { 
+            while (Index < RecordCount)
+            {
                 //create a blank Airline
                 clsAirline AnAirline = new clsAirline();
                 //read in the fields for the current record
-                AnAirline.WiFi = Convert.ToBoolean(DB.DataTable.Rows[Index]["HasWi-Fi"]);
+                AnAirline.WiFi = Convert.ToBoolean(DB.DataTable.Rows[Index]["HasWiFi"]);
                 AnAirline.AirlineID = Convert.ToInt32(DB.DataTable.Rows[Index]["AirlineID"]);
                 AnAirline.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["RegistrationDate"]);
                 AnAirline.AirlineName = Convert.ToString(DB.DataTable.Rows[Index]["AirlineName"]);
@@ -94,6 +112,21 @@ namespace ClassLibrary
             mAirlineList.Add(TestItem);
         }
 
+        public int Add()
+        {
+            //adds a record to the database based on the values of mThisAirline
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@AirlineName", mThisAirline.AirlineName);
+            DB.AddParameter("@AirlineEmail", mThisAirline.AirlineEmail);
+            DB.AddParameter(@"AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
+            DB.AddParameter("@ResigistrationDate", mThisAirline.DateAdded);
+            DB.AddParameter("@HasWiFi", mThisAirline.WiFi);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblAirline_Insert");
         }
     }
+}
 
