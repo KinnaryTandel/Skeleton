@@ -27,6 +27,7 @@ namespace TestingFlights
             //test to see that the two values are the same
             Assert.AreEqual(AnFlight.FlightID, TestData);
         }
+
         [TestMethod]
         public void FlightSeatNoPropertyOK()
         {
@@ -48,9 +49,9 @@ namespace TestingFlights
             //create some test data to assign to the property
             string TestData = "Error";
             //create some test data to assign to the property
-            AnFlight.Deperture = TestData;
+            AnFlight.Departure = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.Deperture, TestData);
+            Assert.AreEqual(AnFlight.Departure, TestData);
 
         }
         [TestMethod]
@@ -61,9 +62,9 @@ namespace TestingFlights
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             //assign the data to the property
-            AnFlight.DateAdded = TestData;
+            AnFlight.DateandTime = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.DateAdded, TestData);
+            Assert.AreEqual(AnFlight.DateandTime, TestData);
         }
         [TestMethod]
         public void FlightArrivalPropertyOK()
@@ -73,22 +74,22 @@ namespace TestingFlights
             //create some test data to assign to the property
             string TestData = "Error";
             //create some test data to assign to the property
-            AnFlight.Deperture = TestData;
+            AnFlight.Arrival = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.Deperture, TestData);
+            Assert.AreEqual(AnFlight.Arrival, TestData);
 
         }
         [TestMethod]
-        public void FlightPricePropertyOK()
+        public void FlightTicketPricePropertyOK()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create some test data to assign to the property
             Decimal TestData = 1;
             //assign the data to the property
-            AnFlight.Price = TestData;
+            AnFlight.TicketPrice = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnFlight.Price, TestData);
+            Assert.AreEqual(AnFlight.TicketPrice, TestData);
         }
         [TestMethod]
         public void FlightStatusPropertyOK()
@@ -98,9 +99,9 @@ namespace TestingFlights
             //create some test data to assign to the property 
             bool TestData = true;
             //assign the data to the property
-            AnFlight.reschedule = TestData;
+            AnFlight.FlightStatus = TestData;
             //test to see that the two values are the same 
-            Assert.AreEqual(AnFlight.reschedule, TestData);
+            Assert.AreEqual(AnFlight.FlightStatus, TestData);
         }
     }
 }
