@@ -13,34 +13,12 @@ namespace ClassLibrary
         //constructor for the class
         public clsStaffCollection()
         {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record cound
-            Int32 RecordCount = 0;
             //object for the data connect
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank staff
-                clsStaff aStaff = new clsStaff();
-                //read in the fields for the current record
-                aStaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
-                aStaff.Fullname = Convert.ToString(DB.DataTable.Rows[Index]["Fullname"]);
-                aStaff.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
-                aStaff.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
-                aStaff.StartDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["StartDate"]);
-                aStaff.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
-                aStaff.IsAdmin = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsAdmin"]);
-                //add the record to the private data member
-                mStaffList.Add(aStaff);
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
         //public proprty for the Staff list
@@ -130,6 +108,63 @@ namespace ClassLibrary
             DB.AddParameter("@StaffId", mThisStaff.StaffId);
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_Delete");
+        }
+
+        public void ReportByFullname(string Fullname)
+        {
+            //filters the record based ona full or partial full name
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the fullname parameter to the database
+            DB.AddParameter("@Fullname", Fullname);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByFullname");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        public void ReportByFullnameNoneFound(string Fullname)
+        {
+            //filters the record based ona full or partial full name
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the fullname parameter to the database
+            DB.AddParameter("@Fullname", Fullname);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByFullname");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mStaffList = new List<clsStaff>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a black staff object
+                clsStaff aStaff = new clsStaff();
+                //read in the fields from the current record
+                aStaff.IsAdmin = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsAdmin"]);
+                aStaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                aStaff.Fullname = Convert.ToString(DB.DataTable.Rows[Index]["Fullname"]);
+                aStaff.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                aStaff.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
+                aStaff.StartDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["StartDate"]);
+                aStaff.PhoneNumber = Convert.ToString(DB.DataTable.Rows[Index]["PhoneNumber"]);
+                //add the record to the private data member
+                mStaffList.Add(aStaff);
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
