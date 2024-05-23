@@ -121,6 +121,44 @@ namespace ClassLibrary
             //test to see that the two values are the same 
             Assert.AreEqual(AllAirlines.ThisAirline, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsAirlineCollection AllAirlines = new clsAirlineCollection();
+            //create the item of test data
+            clsAirline TestItem = new clsAirline();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.WiFi = true;
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.AirlineName = "Blissful Travels";
+            TestItem.AirlineEmail = "BlissfulTravels@gmail.com";
+            TestItem.AirlinePhoneNumber = 75643576;
+            //set ThisAirline to the test data
+            AllAirlines.ThisAirline = TestItem;
+            //add the record
+            PrimaryKey = AllAirlines.Add();
+            //set the primary key of the test data 
+            TestItem.AirlineID = PrimaryKey;
+            //modify the test record
+            TestItem.WiFi = false;
+            TestItem.DateAdded = DateTime.Now;
+            TestItem.AirlineName = "BlissfulTravels2";
+            TestItem.AirlineEmail = "BlissfulTravels2@gmail.com";
+            TestItem.AirlinePhoneNumber = 73096019;
+            //set this record based on the new test data
+            AllAirlines.ThisAirline = TestItem;
+            //update the record
+            AllAirlines.Update();
+            //find the record 
+            AllAirlines.ThisAirline.Find(PrimaryKey);
+            //test to see if ThisAirline matches the test data
+            Assert.AreEqual(AllAirlines.ThisAirline, TestItem);
+        }
+       
     }
 }
 

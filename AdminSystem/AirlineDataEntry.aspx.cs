@@ -11,9 +11,21 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 AirlineID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the airline to be processed
+        AirlineID = Convert.ToInt32(Session["AirlineID"]);
+        if (IsPostBack == false)
+        {
+            //if this is the not a new record
+            if (AirlineID != -1)
+            {
+                //display the current data for the record
+                DisplayAirline();
 
+            }
+        }
     }
 
     protected void TextBox1_TextChanged(object sender, EventArgs e)
@@ -40,23 +52,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
         {
             //capture the airline attributes
 
+            //capture the airline ID
             //capture the airline name
-            AnAirline.AirlineName = txtAirlineName.Text;
+            AnAirline.AirlineName = AirlineName;
             //capture the airline email
-            AnAirline.AirlineEmail = txtAirlineEmail.Text;
+            AnAirline.AirlineEmail = AirlineEmail;
             //capture the airline phone number
-            AnAirline.AirlinePhoneNumber = Convert.ToInt32(txtAirlinePhoneNumber.Text);
+            AnAirline.AirlinePhoneNumber = Convert.ToInt32(AirlinePhoneNumber);
             //capture the date added
             AnAirline.DateAdded = Convert.ToDateTime(DateAdded);
             //capture the WiFi
             AnAirline.WiFi = chkWiFi.Checked;
             //capture the airline ID
-            AnAirline.AirlineID = Convert.ToInt32(txtAirlineID.Text);
-            clsAirlineCollection AirlineList = new clsAirlineCollection();  
-            //set the ThisAirline property
-            AirlineList.ThisAirline = AnAirline;
-            //add the neww record
-            AirlineList.Add();
+            AnAirline.AirlineID = AirlineID;
+            clsAirlineCollection AirlineList = new clsAirlineCollection();
+
+            // if this is a new record i.e. Airline = -1 then add the data 
+            if (AirlineID == -1)
+            {
+
+
+             //set the ThisAirline property
+             AirlineList.ThisAirline = AnAirline;
+             //add the neww record
+             AirlineList.Add();
+            }
+            //otherwise it must be an update 
+            else
+            {
+                //find the record to update
+                AirlineList.ThisAirline.Find(AirlineID);
+                //set the ThisAirline property
+                AirlineList.ThisAirline = AnAirline;
+                //update the new record
+                AirlineList.Update();
+
+            }
             //redirect back to the list page
             Response.Redirect("AirlineList.aspx");
         }
@@ -108,4 +139,20 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         }
     }
+
+    void DisplayAirline()
+    {
+        //create an instance of the airline book
+        clsAirlineCollection AirlineBook = new clsAirlineCollection();
+        //find record to update 
+        AirlineBook.ThisAirline.Find(AirlineID);
+        //display the data for the record 
+        txtAirlineID.Text = AirlineBook.ThisAirline.AirlineID.ToString();
+        txtAirlineName.Text = AirlineBook.ThisAirline.AirlineName.ToString();
+        txtAirlineEmail.Text = AirlineBook.ThisAirline.AirlineEmail.ToString();
+        txtAirlinePhoneNumber.Text = AirlineBook.ThisAirline.AirlinePhoneNumber.ToString();
+        txtAirlineResigistrationDate.Text = AirlineBook.ThisAirline.DateAdded.ToString();
+        chkWiFi.Checked = AirlineBook.ThisAirline.WiFi;
+    }
 }
+
