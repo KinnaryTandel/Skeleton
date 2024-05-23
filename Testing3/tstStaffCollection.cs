@@ -193,5 +193,61 @@ namespace Testing3
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+
+        [TestMethod]
+        public void ReportByFullnameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsStaffCollection allStaff = new clsStaffCollection();
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a blank string (should return all record)
+            FilteredStaff.ReportByFullname("");
+            //test to see that the two values are the same
+            Assert.AreEqual(allStaff.Count, FilteredStaff.Count);
+        }
+
+        [TestMethod]
+        public void ReportByFullnameNoneFound()
+        {
+            //cretae an instance of the class we want to create
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //apply a full name that doesn't exist
+            FilteredStaff.ReportByFullname("xxxxxxxxxxxx xxxxxxxxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredStaff.Count);
+
+        }
+
+        [TestMethod]
+        public void ReportByFullnameTestDataFound()
+        {
+            //create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply a full name that doesn't exist
+            FilteredStaff.ReportByFullname("Jake Jake");
+            //check that the correct number of records are found
+            if (FilteredStaff.Count == 2)
+            {
+                //check to see that the first record is 68
+                if (FilteredStaff.StaffList[0].StaffId != 68)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 69
+                if (FilteredStaff.StaffList[1].StaffId != 69)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }
