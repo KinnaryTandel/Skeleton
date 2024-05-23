@@ -11,7 +11,7 @@ namespace ClassLibrary
         //private member for ThisAirline
         clsAirline mThisAirline = new clsAirline();
 
-        
+
 
         //public property for the address list
         public List<clsAirline> AirlineList
@@ -121,11 +121,27 @@ namespace ClassLibrary
             DB.AddParameter("@AirlineName", mThisAirline.AirlineName);
             DB.AddParameter("@AirlineEmail", mThisAirline.AirlineEmail);
             DB.AddParameter(@"AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
-            DB.AddParameter("@ResigistrationDate", mThisAirline.DateAdded);
+            DB.AddParameter("@RegistrationDate", mThisAirline.DateAdded);
             DB.AddParameter("@HasWiFi", mThisAirline.WiFi);
 
             //execute the query returning the primary key value
             return DB.Execute("sproc_tblAirline_Insert");
+        }
+
+        public void Update()
+        {
+            //update an existing record based on the values of this values ThisAirline
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@AirlineID" , mThisAirline.AirlineID);
+            DB.AddParameter("@AirlineName", mThisAirline.AirlineName);
+            DB.AddParameter("@AirlineEmail", mThisAirline.AirlineEmail);
+            DB.AddParameter(@"AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
+            DB.AddParameter("@RegistrationDate", mThisAirline.DateAdded);
+            DB.AddParameter("@HasWiFi", mThisAirline.WiFi);
+            //execute the stored procedure
+            DB.Execute("sproc_tblAirline_Update");
         }
     }
 }
