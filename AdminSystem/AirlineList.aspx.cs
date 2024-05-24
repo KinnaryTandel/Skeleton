@@ -37,7 +37,7 @@ public partial class _1_List : System.Web.UI.Page
         lstAirlineList.DataTextField = "AirlineName";
         //bind the data to the list
         lstAirlineList.DataBind();
-      }
+    }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
@@ -66,9 +66,29 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "please select a record from the list to edit";
         }
 
-           
+
 
 
 
     }
-}
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be edited 
+        Int32 AirlineID;
+        //if a record has been selected from the list
+        if (lstAirlineList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            AirlineID = Convert.ToInt32(lstAirlineList.SelectedValue);
+            //store the dta in the session object
+            Session["AirlineID"] = AirlineID;
+            //redirect to the edit page
+            Response.Redirect("AirlineConfirmDelete.aspx");
+        }
+        else  //if no record has been selected 
+        {
+            lblError.Text = "please select a record from the list to delete";
+        }
+      }
+     }
