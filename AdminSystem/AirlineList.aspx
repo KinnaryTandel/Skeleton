@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:ListBox ID="lstAirlineList" runat="server" Height="465px" Width="600px"></asp:ListBox>
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 236px; top: 497px; position: absolute; height: 29px; width: 58px" Text="Delete" />
         </div>
         <p>
             <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="margin-left: 24px" Text="Add" Width="60px" />
