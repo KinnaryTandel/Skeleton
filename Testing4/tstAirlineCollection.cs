@@ -191,8 +191,64 @@ namespace ClassLibrary
             Assert.IsFalse(Found);
 
         }
+
+        [TestMethod]
+        public void ReportByAirlineNameMethodOK()
+        {
+            //create an instance of the class containing unfiltered results 
+            clsAirlineCollection AllAirlines = new clsAirlineCollection();
+            //create an instance of the filtered data
+            clsAirlineCollection FilteredAirlines = new clsAirlineCollection();
+            //apply a blank string (should return all records);
+            FilteredAirlines.ReportByAirlineName("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllAirlines.Count,  FilteredAirlines.Count);    
+        }
+
+        [TestMethod]
+        public void ReportByAirlineNameNoneFound()
+        {
+            //create an instance of the class we want to create
+            clsAirlineCollection FilteredAirlines = new clsAirlineCollection();
+            //apply an airline name that doesn't exist
+            FilteredAirlines.ReportByAirlineName("xxxxxxxxxxxxxxxxxxxxx");
+            //test to see if there are no records 
+            Assert.AreEqual(0, FilteredAirlines.Count);
+        }
+
+        [TestMethod]
+        public void ReportByAirlineNameTestDataFound()
+        {
+            //create an instance of the filtered data 
+            clsAirlineCollection FilteredAirlines = new clsAirlineCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+            //apply an airline name that doesn't exist
+            FilteredAirlines.ReportByAirlineName("BlissfulTravels3");
+            //check that the correct number of records are found
+            if (FilteredAirlines.Count == 2) 
+            {
+                //check to see that the first record is 55
+                if (FilteredAirlines.AirlineList[0].AirlineID != 55)
+                {
+                    OK = false;
+                }
+                //check to see that the first record is 56
+                if (FilteredAirlines.AirlineList[1].AirlineID != 56)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records 
+            Assert.IsTrue(OK);
+            }
+        }
     }
-}
+
 
 
 

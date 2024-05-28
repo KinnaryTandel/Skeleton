@@ -57,87 +57,43 @@ namespace ClassLibrary
         }
 
 
-        //constructor for the class
+        //Constructor for the class
         public clsAirlineCollection()
         {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount = 0;
-            //object for the data connect
+            //object for the data connection
             clsDataConnection DB = new clsDataConnection();
-            //execute the stored procedure
+            //xxecute the stored procedure
             DB.Execute("sproc_tblAirline_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank Airline
-                clsAirline AnAirline = new clsAirline();
-                //read in the fields for the current record
-                AnAirline.WiFi = Convert.ToBoolean(DB.DataTable.Rows[Index]["HasWiFi"]);
-                AnAirline.AirlineID = Convert.ToInt32(DB.DataTable.Rows[Index]["AirlineID"]);
-                AnAirline.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["RegistrationDate"]);
-                AnAirline.AirlineName = Convert.ToString(DB.DataTable.Rows[Index]["AirlineName"]);
-                AnAirline.AirlineEmail = Convert.ToString(DB.DataTable.Rows[Index]["AirlineEmail"]);
-                AnAirline.AirlinePhoneNumber = Convert.ToInt32(DB.DataTable.Rows[Index]["AirlinePhoneNumber"]);
-                //add the record to the private data member
-                mAirlineList.Add(AnAirline);
-                //point at the next record
-                Index++;
-            }
-
-            //create the items of test data
-            clsAirline TestItem = new clsAirline();
-            //set its properties
-            TestItem.WiFi = true;
-            TestItem.AirlineID = 1;
-            TestItem.DateAdded = DateTime.Now;
-            TestItem.AirlineName = "Blissful Travels";
-            TestItem.AirlineEmail = "BlissfulTravels@gmail.com";
-            TestItem.AirlinePhoneNumber = 75643576;
-            //add the test item to the test list
-            mAirlineList.Add(TestItem);
-            //re initialise the object for some new data
-            TestItem = new clsAirline();
-            //set its properties
-            TestItem.WiFi = true;
-            TestItem.AirlineID = 2;
-            TestItem.DateAdded = DateTime.Now;
-            TestItem.AirlineName = "Blissful_Travels";
-            TestItem.AirlineEmail = "Bliss@gmail.com";
-            TestItem.AirlinePhoneNumber = 73053015;
-            //add the item to the test list
-            mAirlineList.Add(TestItem);
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
+        
         public int Add()
         {
-            //adds a record to the database based on the values of mThisAirline
-            //connect to the database
+           
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
+            //connect to the database
             DB.AddParameter("@AirlineName", mThisAirline.AirlineName);
             DB.AddParameter("@AirlineEmail", mThisAirline.AirlineEmail);
-            DB.AddParameter(@"AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
+            DB.AddParameter("@AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
             DB.AddParameter("@RegistrationDate", mThisAirline.DateAdded);
             DB.AddParameter("@HasWiFi", mThisAirline.WiFi);
-
             //execute the query returning the primary key value
             return DB.Execute("sproc_tblAirline_Insert");
         }
 
+        
         public void Update()
         {
-            //update an existing record based on the values of this values ThisAirline
-            //connect to the database
             clsDataConnection DB = new clsDataConnection();
-            //set the parameters for the new stored procedure
-            DB.AddParameter("@AirlineID" , mThisAirline.AirlineID);
+            //set the parameters for the stored procedure
+            //connect to the database
+            DB.AddParameter("@AirlineID", mThisAirline.AirlineID);
             DB.AddParameter("@AirlineName", mThisAirline.AirlineName);
             DB.AddParameter("@AirlineEmail", mThisAirline.AirlineEmail);
-            DB.AddParameter(@"AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
+            DB.AddParameter("@AirlinePhoneNumber", mThisAirline.AirlinePhoneNumber);
             DB.AddParameter("@RegistrationDate", mThisAirline.DateAdded);
             DB.AddParameter("@HasWiFi", mThisAirline.WiFi);
             //execute the stored procedure
@@ -145,8 +101,8 @@ namespace ClassLibrary
         }
 
         public void Delete()
-        { 
-            //deletes the record pointed to by ThisAirline
+        {
+            //set the parameters for the stored procedure
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
@@ -154,6 +110,51 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_tblAirline_Delete");
         }
-       }   
-      }
 
+        public void ReportByAirlineName(string AirlineName)
+        {
+            //filters the records based on full or partial airline name
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the AirlineName parameter to the database
+            DB.AddParameter("@AirlineName", AirlineName);
+            //execute the stored procedure
+            DB.Execute("sproc_tblAirline_FilterByAirlineName");
+            //populate the array list with the filtered data
+            PopulateArray(DB);
+        }
+
+        
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populate the array list based on the data table in the parameter DB
+            //variable to store the record count
+            Int32 RecordCount = DB.Count;
+            //variable for the index
+            Int32 Index = 0;
+            //clear the private array list
+            mAirlineList = new List<clsAirline>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank airline
+                clsAirline AnAirline = new clsAirline();
+                //read in the fields from the current record
+                AnAirline.AirlineID = Convert.ToInt32(DB.DataTable.Rows[Index]["AirlineID"]);
+                AnAirline.AirlineName = Convert.ToString(DB.DataTable.Rows[Index]["AirlineName"]);
+                AnAirline.AirlineEmail = Convert.ToString(DB.DataTable.Rows[Index]["AirlineEmail"]);
+                AnAirline.AirlinePhoneNumber = Convert.ToInt32(DB.DataTable.Rows[Index]["AirlinePhoneNumber"]);
+                AnAirline.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["RegistrationDate"]);
+                AnAirline.WiFi = Convert.ToBoolean(DB.DataTable.Rows[Index]["HasWiFi"]);
+                // Add the record to the private data member
+                mAirlineList.Add(AnAirline);
+                // Point at the next record
+                Index++;
+            }
+        }
+    }
+}
+
+
+
+        
