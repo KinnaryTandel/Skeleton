@@ -91,4 +91,38 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "please select a record from the list to delete";
         }
       }
-     }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the airline object
+        clsAirlineCollection AnAirline = new clsAirlineCollection();
+        //retrieve the value of airline name from the presentation layer
+        AnAirline.ReportByAirlineName(btnApplyFilter.Text);
+        //set the data source to the list of airlines in the collection
+        lstAirlineList.DataSource = AnAirline.AirlineList;
+        //set the name of the primary key
+        lstAirlineList.DataValueField = "AirlineID";
+        //set the name of the field to display
+        lstAirlineList.DataTextField = "AirlineName";
+        //bind the data to the list
+        lstAirlineList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the airline object
+        clsAirlineCollection AnAirline = new clsAirlineCollection();
+        //set an empty string
+        AnAirline.ReportByAirlineName("");
+        //clear any existing filter to tidy up the interface
+        btnClearFilter.Text = "";
+        //set the data source to the list of airlines in the collection
+        lstAirlineList.DataSource = AnAirline.AirlineList;
+        //set the name of the primary key
+        lstAirlineList.DataValueField = "AirlineID";
+        //set the name of the field to display
+        lstAirlineList.DataTextField = "AirlineName";
+        //bind the data to the list
+        lstAirlineList.DataBind();
+    }
+}
