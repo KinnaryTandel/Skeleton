@@ -26,7 +26,7 @@
         <asp:TextBox ID="txtArrival" runat="server" style="z-index: 1; left: 458px; top: 216px; position: absolute"></asp:TextBox>
         <asp:Label ID="lblArrival" runat="server" style="z-index: 1; left: 347px; top: 213px; position: absolute; bottom: 444px" Text="Arrival"></asp:Label>
         <asp:Label ID="lblDateandTime" runat="server" style="z-index: 1; left: 347px; top: 261px; position: absolute" Text="Dateandtime"></asp:Label>
-        <asp:TextBox ID="DateandTime" runat="server" style="z-index: 1; left: 458px; top: 259px; position: absolute"></asp:TextBox>
+        <asp:TextBox ID="txtDateandTime" runat="server" style="z-index: 1; left: 458px; top: 259px; position: absolute"></asp:TextBox>
         <asp:TextBox ID="txtTicketPrice" runat="server" style="z-index: 1; left: 458px; top: 302px; position: absolute"></asp:TextBox>
         <asp:Label ID="lblTicketPrice" runat="server" style="z-index: 1; left: 347px; top: 305px; position: absolute" Text="Ticket Price"></asp:Label>
         <asp:CheckBox ID="chkFlightStatus" runat="server" style="z-index: 1; left: 483px; top: 371px; position: absolute" Text="FlightStatus" />
@@ -37,6 +37,10 @@
         </p>
         <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 373px; top: 436px; position: absolute" Text="Ok" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 508px; top: 437px; position: absolute" Text="Cancel" />
+       
+        <p>
+            &nbsp;</p>
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 661px; top: 310px; position: absolute" Text="Find" />
        
     </form>
 </body>
