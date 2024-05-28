@@ -107,17 +107,16 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int flightID)
+       public bool Find(int FlightID)
         {
-            //set the private data members to the test data value
             fFlightID = 21;
-            fSeatNo = "2a";
+            fSeatNo = "3b";
             fDeparture = "London";
-            fArrival = "America";
+            fArrival = "Canada";
             fDateandTime = Convert.ToDateTime("23/05/2024");
-            fTicketPrice = 800;
+            fTicketPrice = Convert.ToDecimal(395.50);
             fFlightStatus = true;
-            //always return true
+
             return true;
         }
     }
