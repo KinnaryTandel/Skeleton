@@ -97,7 +97,7 @@ public partial class _1_List : System.Web.UI.Page
         //create an instance of the airline object
         clsAirlineCollection AnAirline = new clsAirlineCollection();
         //retrieve the value of airline name from the presentation layer
-        AnAirline.ReportByAirlineName(btnApplyFilter.Text);
+        AnAirline.ReportByAirlineName(txtFilter.Text);
         //set the data source to the list of airlines in the collection
         lstAirlineList.DataSource = AnAirline.AirlineList;
         //set the name of the primary key
@@ -115,7 +115,7 @@ public partial class _1_List : System.Web.UI.Page
         //set an empty string
         AnAirline.ReportByAirlineName("");
         //clear any existing filter to tidy up the interface
-        btnClearFilter.Text = "";
+        txtFilter.Text = "";
         //set the data source to the list of airlines in the collection
         lstAirlineList.DataSource = AnAirline.AirlineList;
         //set the name of the primary key

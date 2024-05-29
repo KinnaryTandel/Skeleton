@@ -36,7 +36,7 @@
         
         <asp:CheckBox ID="chkWiFi" runat="server" style="z-index: 1; left: 127px; top: 262px; position: absolute" Text="WiFi" Checked="True" />
         
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 146px; top: 347px; position: absolute" Text="Cancel" Height="25px" Width="75px" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 147px; top: 347px; position: absolute; right: 915px;" Text="Cancel" Height="25px" Width="75px" OnClick="btnCancel_Click" />
         <p>
             &nbsp;</p>
         <p>
@@ -55,6 +55,9 @@
             &nbsp;</p>
         <p>
             &nbsp;</p>
+        <p>
+            <asp:Button ID="btnMainMenu" runat="server" style="z-index: 1; left: 300px; top: 347px; position: absolute" Text="Return To Main Menu" Width="224px" OnClick="btnMainMenu_Click"/>
+        </p>
         <p>
             &nbsp;</p>
         <p>

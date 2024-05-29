@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class StaffLogin : System.Web.UI.Page
+public partial class AirlineLogin : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,7 +16,7 @@ public partial class StaffLogin : System.Web.UI.Page
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         //create an instance of the staff user class
-        clsStaffUser anUser = new clsStaffUser();
+        clsAirlineUser AnUser = new clsAirlineUser();
         //create the variable to store the username and password
         string UserName = txtUserName.Text;
         string Password = txtPassword.Text;
@@ -27,8 +27,8 @@ public partial class StaffLogin : System.Web.UI.Page
         //get the password entered by the user
         Password = Convert.ToString(txtPassword.Text);
         //find the record
-        Found = anUser.FindUser(UserName, Password);
-        //if username and/or password is empty
+        Found = AnUser.FindUser(UserName, Password);
+        //if username/password is empty
         if (txtUserName.Text == "")
         {
             //record the error
@@ -43,7 +43,7 @@ public partial class StaffLogin : System.Web.UI.Page
         else if (Found == true)
         {
             //redirect to the List Page
-            Response.Redirect("StaffList.aspx");
+            Response.Redirect("AirlineList.aspx");
         }
         else if (Found == false)
         {
@@ -56,3 +56,4 @@ public partial class StaffLogin : System.Web.UI.Page
 
     }
 }
+    
