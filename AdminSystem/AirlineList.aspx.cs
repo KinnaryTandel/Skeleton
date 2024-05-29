@@ -12,8 +12,7 @@ public partial class _1_List : System.Web.UI.Page
     Int32 AirlineID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //get the number of the airline to be processed
-        AirlineID = Convert.ToInt32(Session["AirlineID"]);
+        //if this is first time the page is displayed
         if (IsPostBack == false)
         {
             //if this is the not a new record
@@ -22,6 +21,13 @@ public partial class _1_List : System.Web.UI.Page
                 //display the current data for the record
                 DisplayAirlines();
             }
+
+            //create an new instance of the clsAirlineUser
+            clsAirlineUser AnUser = new clsAirlineUser();
+            //get data from the session object
+            AnUser = (clsAirlineUser)Session["AnUser"];
+            //display the user name
+            Response.Write("Logged in as: " + AnUser.UserName);
         }
     }
 
@@ -124,5 +130,10 @@ public partial class _1_List : System.Web.UI.Page
         lstAirlineList.DataTextField = "AirlineName";
         //bind the data to the list
         lstAirlineList.DataBind();
+    }
+
+    protected void btnMainMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
