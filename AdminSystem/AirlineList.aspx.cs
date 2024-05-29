@@ -38,7 +38,7 @@ public partial class _1_List : System.Web.UI.Page
         //set the data source to list of airlines in the collection
         lstAirlineList.DataSource = Airlines.AirlineList;
         //set the name of the primary key
-        lstAirlineList.DataValueField = "AirlineEmail";
+        lstAirlineList.DataValueField = "AirlineID";
         //set the data field to display
         lstAirlineList.DataTextField = "AirlineName";
         //bind the data to the list
@@ -87,7 +87,7 @@ public partial class _1_List : System.Web.UI.Page
         {
             //get the primary key value of the record to edit
             AirlineID = Convert.ToInt32(lstAirlineList.SelectedValue);
-            //store the dta in the session object
+            //store the data in the session object
             Session["AirlineID"] = AirlineID;
             //redirect to the edit page
             Response.Redirect("AirlineConfirmDelete.aspx");
