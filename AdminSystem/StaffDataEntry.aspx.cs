@@ -133,4 +133,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtStartDate.Text = StaffBook.ThisStaff.StartDate.ToString();
         chkIsAdmin.Checked= StaffBook.ThisStaff.IsAdmin;
     }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the staff login page
+        Response.Redirect("StaffList.aspx");
+    }
+
+    protected void btnReturnMM_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the staff login page
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }

@@ -113,7 +113,7 @@ namespace TestingFlights
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
             //test to see if the result is true
@@ -128,34 +128,36 @@ namespace TestingFlights
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.FlightID != 21) 
+
+            if(AnFlight.FlightID !=4)
             {
-             OK = false;
+                OK = false;
             }
             //test to see if the result is true
             Assert.IsTrue(OK);
         }
+
         [TestMethod]
+
         public void TestSeatNoFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
+
             if (AnFlight.SeatNo != "2a")
             {
                 OK = false;
@@ -165,20 +167,21 @@ namespace TestingFlights
         }
 
         [TestMethod]
+
         public void TestDepartureFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.Departure != "London")
+
+            if (AnFlight.Departure != "Leicester")
             {
                 OK = false;
             }
@@ -187,20 +190,21 @@ namespace TestingFlights
         }
 
         [TestMethod]
+
         public void TestArrivalFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.Arrival != "America")
+
+            if (AnFlight.Arrival != "Nottingham")
             {
                 OK = false;
             }
@@ -209,20 +213,21 @@ namespace TestingFlights
         }
 
         [TestMethod]
+
         public void TestDateandTimeFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.DateandTime != Convert.ToDateTime("23/05/2024"))
+
+            if (AnFlight.DateandTime != Convert.ToDateTime("27/05/2024"))
             {
                 OK = false;
             }
@@ -230,21 +235,23 @@ namespace TestingFlights
             Assert.IsTrue(OK);
         }
 
+
         [TestMethod]
+
         public void TestTicketPriceFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.TicketPrice != 800)
+
+            if (AnFlight.TicketPrice != Convert.ToDecimal(150))
             {
                 OK = false;
             }
@@ -253,25 +260,29 @@ namespace TestingFlights
         }
 
         [TestMethod]
+
         public void TestFlightStatusFound()
         {
             //create an instance of the class we want to create
             clsFlight AnFlight = new clsFlight();
             //create a boolean variable to store the results of the validation
             Boolean Found = false;
-            //create a boolean variable to record the results if the data is OK (assume it is)
+
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 FlightID = 21;
+            Int32 FlightID = 4;
             //invoke the method
             Found = AnFlight.Find(FlightID);
-            //check the flightid
-            if (AnFlight.FlightStatus != true)
+
+            if (AnFlight.FlightStatus != false)
             {
                 OK = false;
             }
             //test to see if the result is true
             Assert.IsTrue(OK);
         }
+
+
+
     }
 }

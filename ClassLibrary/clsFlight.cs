@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace ClassLibrary
 {
@@ -107,18 +108,35 @@ namespace ClassLibrary
             }
         }
 
-        public bool Find(int flightID)
+        public bool Find(int FlightID)
         {
-            //set the private data members to the test data value
-            fFlightID = 21;
-            fSeatNo = "2a";
-            fDeparture = "London";
-            fArrival = "America";
-            fDateandTime = Convert.ToDateTime("23/05/2024");
-            fTicketPrice = 800;
-            fFlightStatus = true;
-            //always return true
-            return true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the customer id to search for
+            DB.AddParameter("@FlightID", FlightID);
+            //execute the stored procedure
+            DB.Execute("sproc_TblFlights_FilterByFlightID");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                fFlightID = Convert.ToInt32(DB.DataTable.Rows[0]["FlightID"]);
+                fSeatNo = Convert.ToString(DB.DataTable.Rows[0]["SeatNo"]);
+                fDeparture = Convert.ToString(DB.DataTable.Rows[0]["Departure"]);
+                fArrival = Convert.ToString(DB.DataTable.Rows[0]["Arrival"]);
+                fDateandTime = Convert.ToDateTime(DB.DataTable.Rows[0]["DateandTime"]);
+                fTicketPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["TicketPrice"]);
+                fFlightStatus = Convert.ToBoolean(DB.DataTable.Rows[0]["FlightStatus"]);
+                //return that everything worked OK
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating there is a problem
+                return false;
+            }
+
         }
     }
 }
