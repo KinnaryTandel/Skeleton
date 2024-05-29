@@ -19,6 +19,7 @@
             <asp:TextBox ID="txtSearch" runat="server" style="z-index: 1; left: 174px; top: 376px; position: absolute"></asp:TextBox>
             <asp:Button ID="btnApply" runat="server" Style="z-index: 1; top: 423px; position: absolute; left: 50px" Text="Apply Filter" OnClick="btnApply_Click"/>
             <asp:Button ID="btnClear" runat="server" Style="z-index: 1; top: 423px; position: absolute; left: 174px" Text="Clear Filter" OnClick="btnClear_Click"/>
+            <asp:Button ID="btnReturnMM" runat="server" Style="z-index: 1; top: 423px; position: absolute; left: 355px;" Text="Return to Main Menu" OnClick="btnReturnMM_Click" />
         </div>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 13px; top:475px; position: absolute"></asp:Label>
     </form>
