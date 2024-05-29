@@ -8,17 +8,44 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 CustomerId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the customer to be processed
+        CustomerId = Convert.ToInt32(Session["AddressId"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record
+            if (CustomerId != -1)
+            {
+                //display the current data for the record
+                DisplayCustomer();
+            }
+        }
 
+    }
+
+    private void DisplayCustomer()
+    {
+        //create an instance of the customer book
+        clsCustomerCollection Customer = new clsCustomerCollection();
+        //find the record to update
+        Customer.ThisCustomer.Find(CustomerId);
+        //display the data for the record
+        txtCustomerId.Text = Customer.ThisCustomer.CustomerId.ToString();
+        txtName.Text = Customer.ThisCustomer.Name.ToString();
+        txtEmail.Text = Customer.ThisCustomer.Email.ToString();
+        txtPaymentDetails.Text = Customer.ThisCustomer.PaymentDetails.ToString();
+        txtBookingId.Text = Customer.ThisCustomer.BookingID.ToString();
+        txtDateAdded.Text = Customer.ThisCustomer.DateAdded.ToString();
+        chkActive.Checked = Customer.ThisCustomer.Active;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
         //create a new instance of clsCustomer
         clsCustomer aCustomer = new clsCustomer();
-        //capture the customer id
-        string CustomerId = txtCustomerId.Text;
         //capture the name
         string Name = txtName.Text;
         //capture the email
@@ -37,6 +64,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = aCustomer.Valid(Name, Email, PaymentDetails, BookingID, DateAdded);
         if (Error == "")
         {
+            //capture the customer id
+            aCustomer.CustomerId = CustomerId;
             //capture the Name
             aCustomer.Name = Name;
             //capture the email
@@ -51,20 +80,37 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aCustomer.Active = chkActive.Checked;
             //create a new instance of the customer collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            //set the ThisCustomer property
-            CustomerList.ThisCustomer = aCustomer;
-            //add the new record
-            CustomerList.Add();
+
+            //if this is a new record i.e.CustomerId = -1 then add the data
+            if (CustomerId == -1)
+            {
+                //the the ThisCustomer property
+                CustomerList.ThisCustomer = aCustomer;
+                //add the new record
+                CustomerList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                CustomerList.ThisCustomer.Find(CustomerId);
+                //set the ThisCustomer property
+                CustomerList.ThisCustomer = aCustomer;
+                //update the record
+                CustomerList.Update();
+            }
             //redirect back to the list page
-            Response.Redirect("Customerlist.aspx");
+            Response.Redirect("CustomerList.aspx");
         }
         else
         {
             //display the error message
             lblError.Text = Error;
         }
-
     }
+
+
+    
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -98,5 +144,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Session["CustomerId"] = -1;
         //redirect to the data entry page
         Response.Redirect("CustomerDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        
     }
 }
