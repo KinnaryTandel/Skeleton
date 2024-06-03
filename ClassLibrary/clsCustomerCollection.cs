@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace ClassLibrary
 {
@@ -53,34 +54,12 @@ namespace ClassLibrary
         //constructor for the class
         public clsCustomerCollection()
         {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count
-            Int32 RecordCount = 0;
-            //object for the data connect
+            //object for data connection
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while(Index < RecordCount)
-                    {
-                //create a blank customer
-                clsCustomer aCustomer = new clsCustomer();
-                //read in the fileds for the current record
-                aCustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
-                aCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
-                aCustomer.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
-                aCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
-                aCustomer.PaymentDetails = Convert.ToInt32(DB.DataTable.Rows[Index]["PaymentDetails"]);
-                aCustomer.BookingID = Convert.ToInt32(DB.DataTable.Rows[Index]["BookingId"]);
-                aCustomer.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
-                //add the record to the private data member
-                mCustomerList.Add(aCustomer);
-                //point to the next record
-                Index++;
-            }
+           //populate the array list with the data table
+           PopulateArray(DB);
         }
 
         public int Add()
@@ -125,6 +104,56 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerId", mThisCustomer.CustomerId);
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByName(string Name)
+        {
+            //filter the records based on a full or partial name
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //sens the Name parameter to the database
+            DB.AddParameter("@Name", Name);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByName");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the counts of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mCustomerList = new List<clsCustomer>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank customer object
+                clsCustomer aCustomer = new clsCustomer();
+                //read in the fields from the current record
+                //read in the fileds for the current record
+                aCustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                aCustomer.CustomerId = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerId"]);
+                aCustomer.Name = Convert.ToString(DB.DataTable.Rows[Index]["Name"]);
+                aCustomer.Email = Convert.ToString(DB.DataTable.Rows[Index]["Email"]);
+                aCustomer.PaymentDetails = Convert.ToInt32(DB.DataTable.Rows[Index]["PaymentDetails"]);
+                aCustomer.BookingID = Convert.ToInt32(DB.DataTable.Rows[Index]["BookingId"]);
+                aCustomer.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                //add the record to the private data member
+                mCustomerList.Add(aCustomer);
+                //point to the next record
+                Index++;
+            }
+        }
+
+        public void ReportByName(object text)
+        {
+            throw new NotImplementedException();
         }
     }
 }
