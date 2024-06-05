@@ -10,6 +10,7 @@
     <form id="form1" runat="server">
         <div>
         </div>
+        <asp:ListBox ID="lstFlightList" runat="server" style="z-index: 1; left: 10px; top: 34px; position: absolute; height: 366px; width: 462px"></asp:ListBox>
     </form>
 </body>
 </html>
