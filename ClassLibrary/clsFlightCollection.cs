@@ -127,5 +127,16 @@ namespace ClassLibrary
             //execute the stored procedure
             DB.Execute("sproc_TblFlights_Update");
         }
+
+        public void Delete()
+        {
+            //delete the record pointed to by thisflight
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@FlightID", fThisFlight.FlightID);
+            //execute the stored procedure
+            DB.Execute("sproc_TblFlights_Delete");
+        }
     }
 }
