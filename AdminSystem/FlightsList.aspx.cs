@@ -38,6 +38,26 @@ public partial class _1_List : System.Web.UI.Page
         //store -1 into the session object to indicate this is new record
         Session["FlightID"] = -1;
         //redirect to the data entry page
-        Response.Redirect("FlightDataEntry.aspx");
+        Response.Redirect("FlightsDataEntry.aspx");
+    }
+
+    protected void btnEdit_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be edited
+        Int32 FlightID;
+        //if a record has been selected from the list
+        if(lstFlightList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            FlightID = Convert.ToInt32(lstFlightList.SelectedValue);
+            //stored the data in the sessison object
+            Session["FlightID"] = FlightID;
+            //redirect to the edit page
+            Response.Redirect("FlightsDataEntry.aspx");
+        }
+        else //if no record has been selected
+        {
+            lblError.Text = "Please select a record from the list to edit";
+        }
     }
 }
