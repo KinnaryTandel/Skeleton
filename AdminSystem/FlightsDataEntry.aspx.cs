@@ -47,8 +47,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnFlight.DateandTime = Convert.ToDateTime(DateandTime);
             //capture the ticketprice
             AnFlight.TicketPrice = Convert.ToDecimal(TicketPrice);
-            //store the address in the session object
-            Session["AnFlight"] = AnFlight;
+            //capture FlightStatus
+            AnFlight.FlightStatus = chkFlightStatus.Checked;
+           //create a new instance of the flight collection
+           clsFlightCollection FlightList = new clsFlightCollection();
+            //set the ThisFlight property
+            FlightList.ThisFlight = AnFlight;
+            //add the new record
+            FlightList.Add();
             //navigate to th view page
             Response.Redirect("FlightsViewer.aspx");
         }
