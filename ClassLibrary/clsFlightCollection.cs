@@ -109,5 +109,23 @@ namespace ClassLibrary
             //execute the query returning the primary key value
             return DB.Execute("sproc_TblFlights_Insert");
         }
+
+        public void Update()
+        {
+            //update an existing record based on the values of thisFlight
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the new stored procedure
+            DB.AddParameter("@FlightID", fThisFlight.FlightID);
+            DB.AddParameter("@SeatNo", fThisFlight.SeatNo);
+            DB.AddParameter("@Departure", fThisFlight.Departure);
+            DB.AddParameter("@Arrival", fThisFlight.Arrival);
+            DB.AddParameter("@DateandTime", fThisFlight.DateandTime);
+            DB.AddParameter("@TicketPrice", fThisFlight.TicketPrice);
+            DB.AddParameter("@FlightStatus", fThisFlight.FlightStatus);
+
+            //execute the stored procedure
+            DB.Execute("sproc_TblFlights_Update");
+        }
     }
 }
