@@ -24,15 +24,18 @@ public partial class TeamMainMenu : System.Web.UI.Page
         Response.Redirect("CustomerLogin.aspx");
     }
 
-    protected void btnFlight_Click(object sender, EventArgs e)
-    {
-        //redirect the user to the staff login page
-        Response.Redirect("FlightLogin.aspx");
-    }
 
     protected void btnAirline_Click(object sender, EventArgs e)
     {
         //redirect the user to the staff login page
         Response.Redirect("AirlineLogin.aspx");
+    }
+
+
+
+    protected void btnFlight_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the staff login page
+        Response.Redirect("FlightLogin.aspx");
     }
 }
