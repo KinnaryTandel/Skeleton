@@ -101,6 +101,36 @@ namespace Testing2
             Assert.AreEqual(AllFlights.Count, TestList.Count);
         }
 
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsFlightCollection AllFlights = new clsFlightCollection();
+            //create the item of test data
+            clsFlight TestItem = new clsFlight();
+            //variable to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.FlightID = 1;
+            TestItem.SeatNo = "2b";
+            TestItem.Departure = "London";
+            TestItem.Arrival = "Birmingham";
+            TestItem.DateandTime = DateTime.Now;
+            TestItem.TicketPrice = 200;
+            TestItem.FlightStatus = false;
+
+            //set thisflight to the test data
+            AllFlights.ThisFlight = TestItem;
+            //add the record
+            PrimaryKey = AllFlights.Add();
+            //set the primary key of the test data
+            TestItem.FlightID = PrimaryKey;
+            //find the record
+            AllFlights.ThisFlight.Find(PrimaryKey);
+            //test to see that the two values are the same
+            Assert.AreEqual(AllFlights.ThisFlight, TestItem);
+
+        }
         
     }
 }
