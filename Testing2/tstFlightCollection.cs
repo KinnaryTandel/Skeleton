@@ -206,6 +206,67 @@ namespace Testing2
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
-        
+
+        [TestMethod]
+
+        public void ReportBySeatNoMethodOK()
+        {
+            //create an instance of the class containing unfiltered results
+            clsFlightCollection AllFlights = new clsFlightCollection();
+            //create an intance of the filteres data
+            clsFlightCollection FilteredFlights = new clsFlightCollection();
+            //apply a blank string (should return all record)
+            FilteredFlights.ReportBySeatNo("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllFlights.Count, FilteredFlights.Count);
+        }
+
+        [TestMethod]
+
+        public void ReportBySeatNoNoneFound()
+        {
+            //create an instance of the class containing unfiltered results
+            clsFlightCollection AllFlights = new clsFlightCollection();
+            //create an intance of the filteres data
+            clsFlightCollection FilteredFlights = new clsFlightCollection();
+            //apply a seat no that doesn't exist
+            FilteredFlights.ReportBySeatNo("xxx xxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredFlights.Count);
+        }
+
+        [TestMethod]
+
+        public void ReportBySeatNoTestDataFound()
+        {
+            //create an intance of the filteres data
+            clsFlightCollection FilteredFlights = new clsFlightCollection();
+            //variable to store the outcome
+            Boolean OK = true;
+
+            //apply a seat no that doesn't exist
+            FilteredFlights.ReportBySeatNo("3h");
+            //check that the correct number of records are found
+            if (FilteredFlights.Count == 2)
+            {
+                //check to see that the first record is 1016
+                if (FilteredFlights.FlightList[0].FlightID != 1016)
+                {
+                    OK = false;
+                }
+
+                //CHECK to see that the first record is 1019
+                if (FilteredFlights.FlightList[1].FlightID != 1019)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
     }
 }

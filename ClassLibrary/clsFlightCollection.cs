@@ -61,36 +61,14 @@ namespace ClassLibrary
         //constructor for the class
         public clsFlightCollection()
         {
-            //variabel for the index
-            Int32 Index = 0;
-
-            //variable to store the record count 
-            Int32 RecordCount = 0;
-
+            //object for data connection
             clsDataConnection DB = new clsDataConnection();
+
             //execute the stored procedure
             DB.Execute("sproc_TblFlights_SelectAll");
-            //get the count of record
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank flight
-                clsFlight AnFlight = new clsFlight();
-                //read in the fields for the current record
-                AnFlight.FlightID = Convert.ToInt32(DB.DataTable.Rows[Index]["FlightID"]);
-                AnFlight.SeatNo = Convert.ToString(DB.DataTable.Rows[Index]["SeatNo"]);
-                AnFlight.Departure = Convert.ToString(DB.DataTable.Rows[Index]["Departure"]);
-                AnFlight.Arrival = Convert.ToString(DB.DataTable.Rows[Index]["Arrival"]);
-                AnFlight.DateandTime = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateandTime"]);
-                AnFlight.TicketPrice = Convert.ToDecimal(DB.DataTable.Rows[Index]["TicketPrice"]);
-                AnFlight.FlightStatus = Convert.ToBoolean(DB.DataTable.Rows[Index]["FlightStatus"]);
-                //add the record to the private data member
-                fFlightList.Add( AnFlight );
-                //point at the next record
-                Index++;
 
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
         public int Add()
@@ -137,6 +115,56 @@ namespace ClassLibrary
             DB.AddParameter("@FlightID", fThisFlight.FlightID);
             //execute the stored procedure
             DB.Execute("sproc_TblFlights_Delete");
+        }
+
+        public void ReportBySeatNo(string SeatNo)
+        {
+            //filters the record based on a full or partial seat no
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the SeatNo parameter to the database
+            DB.AddParameter("@SeatNo", SeatNo);
+            //execute the stored procedure
+            DB.Execute("sproc_TblFlights_FilterBySeatNo");
+
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populate the array list based on the data table in the parameter DB
+            //varibale for the index
+            Int32 Index = 0;
+
+            //variable to store the record count 
+            Int32 RecordCount;
+
+            //get the count of records
+            RecordCount = DB.Count;
+
+            //clear the private array list
+            fFlightList = new List<clsFlight>();
+
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank flight
+                clsFlight AnFlight = new clsFlight();
+                //read in the fields for the current record
+                AnFlight.FlightID = Convert.ToInt32(DB.DataTable.Rows[Index]["FlightID"]);
+                AnFlight.SeatNo = Convert.ToString(DB.DataTable.Rows[Index]["SeatNo"]);
+                AnFlight.Departure = Convert.ToString(DB.DataTable.Rows[Index]["Departure"]);
+                AnFlight.Arrival = Convert.ToString(DB.DataTable.Rows[Index]["Arrival"]);
+                AnFlight.DateandTime = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateandTime"]);
+                AnFlight.TicketPrice = Convert.ToDecimal(DB.DataTable.Rows[Index]["TicketPrice"]);
+                AnFlight.FlightStatus = Convert.ToBoolean(DB.DataTable.Rows[Index]["FlightStatus"]);
+                //add the record to the private data member
+                fFlightList.Add(AnFlight);
+                //point at the next record
+                Index++;
+
+            }
         }
     }
 }

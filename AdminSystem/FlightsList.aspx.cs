@@ -80,4 +80,38 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to edit";
         }
     }
+
+    protected void btnFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the flight object
+        clsFlightCollection AnFlight = new clsFlightCollection();
+        //retrieve the value of post code from the presentation layer
+        AnFlight.ReportBySeatNo(txtFilter.Text);
+        //set the data source to the list of Flights in the collection
+        lstFlightList.DataSource = AnFlight.FlightList;
+        //set the name of the primary key
+        lstFlightList.DataValueField = "FlightID";
+        //set the name of the field to display
+        lstFlightList.DataTextField = "SeatNo";
+        //bind the data to the list
+        lstFlightList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an instance of the flight object
+        clsFlightCollection AnFlight = new clsFlightCollection();
+        //set an empty string
+        AnFlight.ReportBySeatNo("");
+        //clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        //set the data source to the list of flight in the collection
+        lstFlightList.DataSource = AnFlight.FlightList;
+        //set the name of the primary key
+        lstFlightList.DataValueField = "FlightID";
+        //set the name of the field to display
+        lstFlightList.DataTextField = "SeatNo";
+        //bind the data to the list
+        lstFlightList.DataBind();
+    }
 }
