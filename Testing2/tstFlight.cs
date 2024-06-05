@@ -7,6 +7,12 @@ namespace TestingFlights
     [TestClass]
     public class tstFlight
     {
+
+        string SeatNo = "77h";
+        string Departure = "norway";
+        string Arrival = "london";
+        string DateandTime = DateTime.Now.ToShortDateString();
+        string TicketPrice = "400";
         [TestMethod]
         public void InstanceOk()
         {
@@ -227,7 +233,7 @@ namespace TestingFlights
             //invoke the method
             Found = AnFlight.Find(FlightID);
 
-            if (AnFlight.DateandTime != Convert.ToDateTime("27/05/2024"))
+            if (AnFlight.DateandTime != Convert.ToDateTime("30/05/2024 00:00:00"))
             {
                 OK = false;
             }
@@ -282,6 +288,442 @@ namespace TestingFlights
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+
+        public void ValidOK()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMinLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime,TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "s";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMinPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "ss";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMaxLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "sssssssssssssssssssssssssssssssssssssssssssssssss";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "ssssssssssssssssssssssssssssssssssssssssssssssssss";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMid()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "sssssssssssssssssssssssss";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoMaxPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "sssssssssssssssssssssssssssssssssssssssssssssssssss";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void SeatNoExtremeMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            SeatNo = SeatNo.PadRight(100, 's');
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureMinLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "d";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DeparturePlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "dd";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureMaxLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "ddddddddddddddddddddddddddddddddddddddddddddddddd";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DeapartureMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "dddddddddddddddddddddddddddddddddddddddddddddddddd";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureMid()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "dddddddddddddddddddddddd";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureMaxPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "ddddddddddddddddddddddddddddddddddddddddddddddddddd";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DepartureExtremeMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            SeatNo = SeatNo.PadRight(100, 'd');
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+        [TestMethod]
+
+        public void ArrivalMinLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "a";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "aa";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalMaxLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalMid()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "aaaaaaaaaaaaaaaaaaaaaaaa";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalMaxPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void ArrivalExtremeMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string SeatNo = "";
+            SeatNo = SeatNo.PadRight(100, 'a');
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void DateandTimeExtremeMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddYears(-100);
+
+            string DateandTime = TestDate.ToString();
+
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DateandTimeMinLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+            TestDate = TestDate.AddDays(-1);
+
+            string DateandTime = TestDate.ToString();
+
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+
+        [TestMethod]
+
+        public void DateandTimeMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+
+           
+
+            string DateandTime = TestDate.ToString();
+
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+
+            Assert.AreEqual(Error, "");
+
+        }
+
+        [TestMethod]
+        public void DateandTimeMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsFlight AnFlight = new clsFlight();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the date totodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string variable
+            string DateandTime = TestDate.ToString();
+            //invoke the method
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        
+        public void DateandTimeExtremeMax()
+        {
+            clsFlight AnFlight = new clsFlight();
+
+            String Error = "";
+
+            DateTime TestDate;
+
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+
+
+
+            string DateandTime = TestDate.ToString();
+
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        
+
+        [TestMethod]
+
+        public void DateandTimeInvalidData()
+        {
+            clsFlight AnFlight = new clsFlight();
+
+            String Error = "";
+
+            string DateandTime = "this is not a date";
+
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+
+            Assert.AreNotEqual(Error, "");
+
+        }
+        
+        [TestMethod]
+        public void TicketPriceMinLessOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string TicketPrice = "";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreNotEqual(Error, "");
+        }
+       
+        [TestMethod]
+
+        public void TicketPriceMin()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string TicketPrice = "0.00";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+
+        public void TicketPriceMinPlusOne()
+        {
+            clsFlight AnFlight = new clsFlight();
+            string Error = "";
+            string TicketPrice = "0.01";
+            Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+            Assert.AreEqual(Error, "");
+        }
 
 
     }
