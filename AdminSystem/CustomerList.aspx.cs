@@ -31,6 +31,7 @@ public partial class _1_List : System.Web.UI.Page
         lstCustomerList.DataTextField = "Email";
         //bind the data to the list
         lstCustomerList.DataBind();
+
     }
 
 
@@ -72,6 +73,42 @@ public partial class _1_List : System.Web.UI.Page
             //display an error message
             lblError.Text = "Please select a record from the list to delete";
         }
+    }
+
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create am instance of the customer object
+        clsCustomerCollection aCustomer = new clsCustomerCollection();
+        //retrieve the value of the name from the presentation layer
+        aCustomer.ReportByName(txtSearch.Text);
+        //set the data source to the list of addresses in the collection
+        lstCustomerList.DataSource = aCustomer.CustomerList;
+        //set the name of the primary key
+        lstCustomerList.DataValueField = "CustomerId";
+        //set the name of the field to display
+        lstCustomerList.DataTextField = "Name";
+        //bind the data to the list
+        lstCustomerList.DataBind();
+    }
+
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create am instance of the customer object
+        clsCustomerCollection aCustomer = new clsCustomerCollection();
+        //set an empty string
+        aCustomer.ReportByName("");
+        //clear any existing filter to tidy up the interface
+        txtSearch.Text = "";
+        //set the data source to the list of addresses in the collection
+        lstCustomerList.DataSource= aCustomer.CustomerList;
+        //set the name of the primary key
+        lstCustomerList.DataValueField = "CustomerId";
+        //set the name of the field to display
+        lstCustomerList.DataTextField = "Name";
+        //bind the data to the list
+        lstCustomerList.DataBind();
     }
 }
 
