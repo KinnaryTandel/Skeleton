@@ -148,32 +148,32 @@ namespace ClassLibrary
 
             if(seatNo.Length == 0) 
             {
-                Error = Error + "the seatno may not be blank";
+                Error = Error + "the seatno may not be blank <br>";
             }
 
             if(seatNo.Length > 50)
             {
-                Error = Error + "The seat no must be less than 50 characters";
+                Error = Error + "The seat no must be less than 50 characters <br>";
             }
 
             if (departure.Length == 0)
             {
-                Error = Error + "the Daparture may not be blank";
+                Error = Error + "the Daparture may not be blank <br>";
             }
 
             if (departure.Length > 50)
             {
-                Error = Error + "The Deaparture must be less than 50 characters";
+                Error = Error + "The Deaparture must be less than 50 characters <br>";
             }
 
             if (arrival.Length == 0)
             {
-                Error = Error + "the arrival may not be blank";
+                Error = Error + "the arrival may not be blank <br>";
             }
 
             if (arrival.Length > 50)
             {
-                Error = Error + "The arrival must be less than 50 characters";
+                Error = Error + "The arrival must be less than 50 characters <br>";
             }
 
             DateTime DateComp = DateTime.Now.Date;
@@ -183,18 +183,18 @@ namespace ClassLibrary
                 DateTemp = Convert.ToDateTime(dateandTime);
                 if(DateTemp < DateComp)
                 {
-                    Error = Error + "The date cannot be in the past";
+                    Error = Error + "The date cannot be in the past <br>";
                 }
                 
                 if(DateTemp > DateComp)
                 {
-                    Error = Error + "The date cannot be in the future";
+                    Error = Error + "The date cannot be in the future <br>";
                 }
                 
             }
             catch
             {
-                Error = Error + "The date was not a valid date";
+                Error = Error + "The date was not a valid date <br>";
             }
           
             if(ticketPrice.Length == 0)
@@ -202,10 +202,7 @@ namespace ClassLibrary
                 Error = Error + "The TicketPrice may not be blank";
             }
             
-            if(ticketPrice.Length > 18.0)
-            {
-                Error = Error + "The ticketPrice maynot be ";
-            }
+            
             
             return Error;
         }

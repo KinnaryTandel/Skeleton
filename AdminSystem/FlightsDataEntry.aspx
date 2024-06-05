@@ -33,7 +33,7 @@
         <asp:Label ID="lblSeatNo" runat="server" style="z-index: 1; left: 348px; top: 126px; position: absolute" Text="SeatNo"></asp:Label>
         <asp:TextBox ID="txtSeatNo" runat="server" style="z-index: 1; left: 458px; top: 127px; position: absolute"></asp:TextBox>
         <p>
-            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 376px; top: 376px; position: absolute"></asp:Label>
+            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 59px; top: 479px; position: absolute"></asp:Label>
         </p>
         <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" style="z-index: 1; left: 373px; top: 436px; position: absolute" Text="Ok" />
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 508px; top: 437px; position: absolute" Text="Cancel" />

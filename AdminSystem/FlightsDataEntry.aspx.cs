@@ -19,24 +19,44 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsFlight
         clsFlight AnFlight = new clsFlight();
-         //capture the FlightID
-        AnFlight.FlightID = Convert.ToInt32(txtFlightID.Text);
         //capture the seat no 
-        AnFlight.SeatNo = txtSeatNo.Text;
+        string SeatNo = txtSeatNo.Text;
         //capture the Departure
-        AnFlight.Departure = txtDeparture.Text;
+        string Departure = txtDeparture.Text;
         //capture the Arrival
-        AnFlight.Arrival = txtArrival.Text;
-
-        AnFlight.TicketPrice = Convert.ToDecimal(txtTicketPrice.Text);
+        string Arrival = txtArrival.Text;
+        //capture ticketprice
+        string TicketPrice = txtTicketPrice.Text;
         //capture the DateandTime
-        AnFlight.DateandTime = Convert.ToDateTime(DateTime.Now);
+        string DateandTime =  txtDateandTime.Text;
         //capture the Check Box
-        AnFlight.FlightStatus = chkFlightStatus.Checked;
-        //store the address in the session object
-        Session["AnFlight"] = AnFlight;
-        //navigate to th view page
-        Response.Redirect("FlightsViewer.aspx");
+        string FlightStatus = chkFlightStatus.Text;
+        //variable to store any error message
+        string Error = "";
+        //validate the data
+        Error = AnFlight.Valid(SeatNo, Departure, Arrival, DateandTime, TicketPrice);
+        if( Error == "")
+        {
+            //capture the seatno
+            AnFlight.SeatNo = SeatNo;
+            //capture the Departure
+            AnFlight.Departure = Departure;
+            //capture the arrIval
+            AnFlight.Arrival = Arrival; 
+            //capture the DateandTime
+            AnFlight.DateandTime = Convert.ToDateTime(DateandTime);
+            //capture the ticketprice
+            AnFlight.TicketPrice = Convert.ToDecimal(TicketPrice);
+            //store the address in the session object
+            Session["AnFlight"] = AnFlight;
+            //navigate to th view page
+            Response.Redirect("FlightsViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text =Error;
+        }
     }
 
 
