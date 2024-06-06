@@ -51,6 +51,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tstFlight.cs" />
+    <Compile Include="tstFlightCollection.cs" />
+    <Compile Include="tstFlightUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
