@@ -31,8 +31,6 @@ public partial class TeamMainMenu : System.Web.UI.Page
         Response.Redirect("AirlineLogin.aspx");
     }
 
-
-
     protected void btnFlight_Click(object sender, EventArgs e)
     {
         //redirect the user to the staff login page
