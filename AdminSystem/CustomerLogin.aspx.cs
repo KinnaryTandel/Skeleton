@@ -15,7 +15,7 @@ public partial class CustomerLogin : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-            //create an instance of the staff user class
+            //create an instance of the customer user class
             clsCustomerUser aUser = new clsCustomerUser();
             //create the variable to store the username and password
             string UserName = txtUserName.Text;
@@ -56,7 +56,7 @@ public partial class CustomerLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-            //redirect the user to the staff login page
+            //redirect the user to the main menu
             Response.Redirect("TeamMainMenu.aspx");
         
     }

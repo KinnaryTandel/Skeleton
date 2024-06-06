@@ -8,8 +8,8 @@ namespace ClassLibrary
     {
         //private data member for the list
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
-       //private member data for thisCustomer
-       clsCustomer mThisCustomer = new clsCustomer();
+        //private member data for thisCustomer
+        clsCustomer mThisCustomer = new clsCustomer();
 
         public List<clsCustomer> CustomerList
         {
@@ -24,7 +24,7 @@ namespace ClassLibrary
                 mCustomerList = value;
             }
         }
-        
+
         public int Count
         {
             get
@@ -58,13 +58,13 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-           //populate the array list with the data table
-           PopulateArray(DB);
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
 
         public int Add()
         {
-            //set a record to the database based on the values of mThisCustomer
+            //adds a record to the database based on the values of mThisCustomer
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
@@ -118,6 +118,19 @@ namespace ClassLibrary
             //populate the array list with the data table
             PopulateArray(DB);
         }
+        public void ReportByNameNoneFound(string Name)
+        {
+            //filters the record based ona full or partial full name
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the fullname parameter to the database
+            DB.AddParameter("@Name", Name);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByName");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
 
         void PopulateArray(clsDataConnection DB)
         {
@@ -150,10 +163,4 @@ namespace ClassLibrary
                 Index++;
             }
         }
-
-        public void ReportByName(object text)
-        {
-            throw new NotImplementedException();
-        }
-    }
-}
+    } }

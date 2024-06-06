@@ -17,6 +17,12 @@ public partial class _1_List : System.Web.UI.Page
             //update the list box
             DisplayCustomers();
         }
+        //create a new instance of clsCustomerUser
+        clsCustomerUser aUser = new clsCustomerUser();
+        //get data from the session object
+        aUser = (clsCustomerUser)Session["aUser"];
+        //display the user name
+        Response.Write("Logged in as: " + aUser.UserName);
 
     }
     void DisplayCustomers()
@@ -26,14 +32,20 @@ public partial class _1_List : System.Web.UI.Page
         //set the data source to list of customer in the collection
         lstCustomerList.DataSource = Customers.CustomerList;
         //set the name of the primary key
-        lstCustomerList.DataValueField = "Name";
+        lstCustomerList.DataValueField = "CustomerId";
         //set the data field to display
         lstCustomerList.DataTextField = "Email";
         //bind the data to the list
         lstCustomerList.DataBind();
 
     }
-
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record 
+        Session["CustomerId"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("CustomerDataEntry.aspx");
+    }
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
@@ -110,6 +122,14 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstCustomerList.DataBind();
     }
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
+    {
+        //redirect the user to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    
 }
 
 
