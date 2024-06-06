@@ -13,7 +13,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //get the number of the customer to be processed
-        CustomerId = Convert.ToInt32(Session["AddressId"]);
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
         if (IsPostBack == false)
         {
             //if this is not a new record
@@ -78,13 +78,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
             aCustomer.DateAdded = Convert.ToDateTime(DateAdded);
             //capture active
             aCustomer.Active = chkActive.Checked;
+           
             //create a new instance of the customer collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
 
             //if this is a new record i.e.CustomerId = -1 then add the data
             if (CustomerId == -1)
             {
-                //the the ThisCustomer property
+                //the ThisCustomer property
                 CustomerList.ThisCustomer = aCustomer;
                 //add the new record
                 CustomerList.Add();
@@ -138,16 +139,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
         
     }
 
-    protected void btnAdd_Click(object sender, EventArgs e)
+
+
+    protected void btnReturnToMainMenu_Click(object sender, EventArgs e)
     {
-        //store -1 into the session object to indicate this is a new record
-        Session["CustomerId"] = -1;
-        //redirect to the data entry page
-        Response.Redirect("CustomerDataEntry.aspx");
+        //redirect the user to the main menu
+        Response.Redirect("TeamMainMenu.aspx");
     }
 
-    protected void btnEdit_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
-        
+        //redirect the user to the main menu
+        Response.Redirect("CustomerList.aspx");
     }
 }

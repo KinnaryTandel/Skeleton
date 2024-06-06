@@ -37,9 +37,10 @@
             <asp:CheckBox ID="chkActive" runat="server" style="z-index: 1; left: 165px; top: 306px; position: absolute" Text="Active" />
         </p>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 338px; position: absolute"></asp:Label>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 119px; top: 397px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 119px; top: 397px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
         <p>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 20px; top: 398px; position: absolute; right: 664px;" Text="OK" width="77px" />
+            <asp:Button ID="btnReturnToMainMenu" runat="server" Style="z-index: 1; top: 398px; position: absolute; left: 355px;" Text="Return to Main Menu" OnClick="btnReturnToMainMenu_Click" />
         </p>
     </form>
 </body>
